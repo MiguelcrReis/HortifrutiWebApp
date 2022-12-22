@@ -21,5 +21,10 @@ namespace HortifrutiWebApp.Pages
         {
 
         }
+
+        public void OnPost()
+        {
+
+        }
     }
 }
