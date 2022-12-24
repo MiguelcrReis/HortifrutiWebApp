@@ -6,6 +6,46 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20221224021520_UpdateProductModel.cs" />
+    <Compile Remove="Migrations\20221224021520_UpdateProductModel.Designer.cs" />
+    <Compile Remove="Migrations\20221224021830_UpdateProductModel.cs" />
+    <Compile Remove="Migrations\20221224021830_UpdateProductModel.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\currency.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\date.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\message.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\number.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\plural.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\relative-time.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\unit.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\currency.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\date.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\message.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\number.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\plural.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\relative-time.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\unit.js" />
+    <None Include="wwwroot\lib\globalize\dist\node-main.js" />
+    <None Include="wwwroot\lib\jquery-validation-globalize\gulpfile.js" />
+    <None Include="wwwroot\lib\jquery-validation-globalize\jquery.validate.globalize.js" />
+    <None Include="wwwroot\lib\jquery-validation-globalize\jquery.validate.globalize.min.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.31" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.32" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.32">
