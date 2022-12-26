@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HortifrutiWebApp.Migrations
 {
@@ -11,7 +12,7 @@ namespace HortifrutiWebApp.Migrations
                 columns: table => new
                 {
                     IdProduct = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 150, nullable: false),
                     Descrition = table.Column<string>(maxLength: 1000, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),

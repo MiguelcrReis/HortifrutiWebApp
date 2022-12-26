@@ -6,13 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20221224021520_UpdateProductModel.cs" />
-    <Compile Remove="Migrations\20221224021520_UpdateProductModel.Designer.cs" />
-    <Compile Remove="Migrations\20221224021830_UpdateProductModel.cs" />
-    <Compile Remove="Migrations\20221224021830_UpdateProductModel.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\lib\globalize\dist\globalize-runtime.js" />
     <None Include="wwwroot\lib\globalize\dist\globalize-runtime\currency.js" />
     <None Include="wwwroot\lib\globalize\dist\globalize-runtime\date.js" />
@@ -53,6 +46,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.2" />
   </ItemGroup>
 
 </Project>
