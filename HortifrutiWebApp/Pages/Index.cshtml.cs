@@ -29,10 +29,5 @@ namespace HortifrutiWebApp.Pages
         {
             Products = await _context.Product.ToListAsync<Product>();
         }
-
-        public void OnPost()
-        {
-
-        }
     }
 }

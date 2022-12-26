@@ -2,54 +2,59 @@
 @model HortifrutiWebApp.Pages.Products.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
 
 <h1>@ViewData["Title"]</h1>
 
 <p>
-    <a asp-page="Create">New Product</a>
+	<a asp-page="Create" class="btn btn-primary">New Product</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].Descrition)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].Stock)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Product) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descrition)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stock)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.IdProduct">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.IdProduct">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.IdProduct">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Product[0].Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Product[0].Descrition)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Product[0].Price)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Product[0].Stock)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.Product)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Descrition)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Price)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Stock)
+				</td>
+				<td>
+					<a asp-page="./Edit" asp-route-id="@item.IdProduct" class="btn btn-secondary">Edit</a> |
+					<a asp-page="./Details" asp-route-id="@item.IdProduct" class="btn btn-info">Details</a> |
+					<a asp-page="./Delete" asp-route-id="@item.IdProduct" class="btn btn-danger">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>
+
+<div>
+	<a asp-page="/Index" class="btn btn-secondary">Back to Home</a>
+</div>
 

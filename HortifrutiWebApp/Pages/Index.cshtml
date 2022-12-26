@@ -6,15 +6,27 @@
 
 <div class="text-center">
 	<h1 class="display-4">Welcome to HortiFruti Reis</h1>
-	<p>A Hortifruti que coloca açúcar no mamão.</p>
+	<p>A Hortifruti que coloca açúcar no mamão para você.</p>
 </div>
 
 <div class="row">
 	@foreach (var product in Model.Products)
 	{
-		<div class="col-sm-4">
-			<div>
-
+		<div class="col-sm-2">
+			<div class="card text-center bg-light mb-4">
+				<img class="card-img-top" @*style="max-width: 150px; max-height: 150px; width: auto; height: auto;"*@ src="/img/product/@String.Concat(product.IdProduct.ToString("D6"),".png")"
+					 alt="@product.Name image" />
+				<div class="card-header">
+					R$ @product.Price.ToString("F2")
+				</div>
+				<div class="card-body" style="height: 90px;">
+					<h5 class="card-title">@product.Name</h5>
+					<p class="card-text">@product.Descrition</p>
+				</div>
+				<div class="card-footer">
+					<div><a href="#" class="btn btn-primary">Adicionar ao Carrinho</a></div>
+					<small class="text-muted">Estoque: @product.Stock</small>
+				</div>
 			</div>
 		</div>
 	}
