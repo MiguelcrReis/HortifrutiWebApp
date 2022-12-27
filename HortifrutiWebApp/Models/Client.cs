@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HortifrutiWebApp.Models
 {
@@ -28,14 +25,14 @@ namespace HortifrutiWebApp.Models
 
         [Required(ErrorMessage = "{0} obrigatório")]
         [MaxLength(11, ErrorMessage = "O campo {0} deve conter {1} caracteres")]
-        [RegularExpression(@"[0-9]{11}$", ErrorMessage="O campo {0} deve conter 11 dígitos")]
-        [Display(Name="CPF")]
+        [RegularExpression(@"[0-9]{11}$", ErrorMessage = "O campo {0} deve conter 11 dígitos")]
+        [Display(Name = "CPF")]
         public string Cpf { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
         [DataType(DataType.EmailAddress)]
         [EmailAddress(ErrorMessage = "Insira um endereço de {0} válido")]
-        [Display(Name ="E-mail")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
