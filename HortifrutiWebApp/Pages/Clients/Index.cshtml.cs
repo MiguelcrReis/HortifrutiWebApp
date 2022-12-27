@@ -21,5 +21,20 @@ namespace HortifrutiWebApp.Pages.Clients
         {
             Clients = await _context.Clients.ToListAsync();
         }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int? id)
+        {
+            if (id == null) { return NotFound(); }
+
+            var client = await _context.Clients.FindAsync(id);
+
+            if (client != null)
+            {
+                _context.Clients.Remove(client);
+                await _context.SaveChangesAsync();
+            }
+
+            return Page();
+        }
     }
 }
