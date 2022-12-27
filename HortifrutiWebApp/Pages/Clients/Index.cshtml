@@ -27,11 +27,19 @@
 				@foreach (var item in Model.Clients)
 				{
 					<tr>
-						<td>@Html.DisplayFor(modelItem => item.Name)</td>
+						<td>@Html.DisplayFor(modelItem => item.Name + " " + item.LastName)</td>
 						<td>@Html.DisplayFor(modelItem => item.Cpf)</td>
 						<td>@Html.DisplayFor(modelItem => item.Email)</td>
 						<td>@Html.DisplayFor(modelItem => item.Phone)</td>
 						<td>@Html.DisplayFor(modelItem => item.Birthday)</td>
+						<td class="text-center">
+							<a class="btn btn-primary btn-sm" aso-page="./Edit" asp-route-id="@item.IdClient">Alterar</a>
+							<form class="d-inline-block" asp-page-handler="delete" asp-route-id="@item.IdClient" method="post">
+								<button class="btn btn-danger btn-sm" onclick=" (this);" type="button">
+									Excluir
+								</button>
+							</form>
+						</td>
 					</tr>
 				}
 			</tbody>
