@@ -1,0 +1,39 @@
+﻿<!Doctype html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<meta charset="utf-8" lang="pt-br" />
+	<title>HortiFruti Reis :: Administração</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lumen.css" />
+</head>
+<body>
+	<header class="bg-dark">
+		<div class="container">
+			<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+				<a class="navbar-brand" href="#">HortiFruti Reis</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+						aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="nav-item nav-link" asp-area="" asp-page="/Admin">Administração</a>
+						<a class="nav-item nav-link" asp-area="" asp-page="/Products/Index">Produtos</a>
+						<a class="nav-item nav-link" asp-area="" asp-page="/Clients/Index">Clientes</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<section class="container">
+		<main role="main">
+			@RenderBody()
+		</main>
+	</section>
+	<footer class="footer bg-light text-center p-4 fixed-bottom">
+		<div class="container">
+			<span class="text-dark">Copyright &copy; 2022 - Todos os direitos reservados</span>
+		</div>
+	</footer>
+</body>
+</html>

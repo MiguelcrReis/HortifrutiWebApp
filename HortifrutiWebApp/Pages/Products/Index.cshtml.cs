@@ -12,14 +12,14 @@ namespace HortifrutiWebApp.Pages.Products
 {
     public class IndexModel : PageModel
     {
-        private readonly HortifrutiWebApp.Data.WebAppDbContext _context;
+        private readonly WebAppDbContext _context;
 
-        public IndexModel(HortifrutiWebApp.Data.WebAppDbContext context)
+        public IndexModel(WebAppDbContext context)
         {
             _context = context;
         }
 
-        public IList<Product> Product { get;set; }
+        public IList<Product> Product { get; set; }
 
         public async Task OnGetAsync()
         {
