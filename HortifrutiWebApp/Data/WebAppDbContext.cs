@@ -9,11 +9,12 @@ namespace HortifrutiWebApp.Data
 {
     public class WebAppDbContext : DbContext
     {
-        public WebAppDbContext (DbContextOptions<WebAppDbContext> options)
+        public WebAppDbContext(DbContextOptions<WebAppDbContext> options)
             : base(options)
         {
         }
 
-        public DbSet<HortifrutiWebApp.Models.Product> Product { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Client> Clients { get; set; }
     }
 }
