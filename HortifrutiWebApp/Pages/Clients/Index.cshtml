@@ -1,0 +1,44 @@
+﻿@page
+@model HortifrutiWebApp.Pages.Clients.IndexModel
+@{
+	ViewData["Title"] = "Index";
+}
+
+<header class="container p-3">
+	<div class="row align-items-center"></div>
+	<div class="col-sm-6"><h1>@ViewData["Title"]</h1></div>
+	<div class="col-sm-6 text-right"><a asp-page="Create" class="btn btn-primary">Novo Cliente</a></div>
+</header>
+
+<main class="container">
+	@if (Model.Clients.Count() > 0)
+	{
+		<table class="table">
+			<thead>
+				<tr>
+					<th>@Html.DisplayNameFor(x => x.Clients[0].Name + " " + x.Clients[0].LastName)</th>
+					<th>@Html.DisplayNameFor(x => x.Clients[0].Cpf)</th>
+					<th>@Html.DisplayNameFor(x => x.Clients[0].Email)</th>
+					<th>@Html.DisplayNameFor(x => x.Clients[0].Phone)</th>
+					<th>@Html.DisplayNameFor(x => x.Clients[0].Birthday)</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.Clients)
+				{
+					<tr>
+						<td>@Html.DisplayFor(modelItem => item.Name)</td>
+						<td>@Html.DisplayFor(modelItem => item.Cpf)</td>
+						<td>@Html.DisplayFor(modelItem => item.Email)</td>
+						<td>@Html.DisplayFor(modelItem => item.Phone)</td>
+						<td>@Html.DisplayFor(modelItem => item.Birthday)</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+	else
+	{
+		<h2>Não há clientes cadastrados.</h2>
+	}
+</main>
