@@ -35,7 +35,7 @@ namespace HortifrutiWebApp.Pages.Clients
                 await _context.SaveChangesAsync();
             }
 
-            return Page();
+            return RedirectToPage("./Index");
         }
     }
 }

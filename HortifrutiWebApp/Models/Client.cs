@@ -30,7 +30,6 @@ namespace HortifrutiWebApp.Models
         public string Cpf { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
-        [DataType(DataType.EmailAddress)]
         [EmailAddress(ErrorMessage = "Insira um endereço de {0} válido")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
