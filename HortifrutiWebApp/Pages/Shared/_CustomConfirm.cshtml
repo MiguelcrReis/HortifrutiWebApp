@@ -1,0 +1,28 @@
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" />"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+<script>
+	function confirmDelete(el) {
+		$.confirm({
+			title: 'Confirm!',
+			content: 'Are you sure you want to delete this?',
+			buttons: {
+				confirm: {
+					text: "Yes",
+					btnClass: "btn-danger",
+					action: function () {
+						el.form.submit();
+						$.alert('Confirmed!');
+					}
+				},
+				cancel: {
+					text: "Cancel",
+					btnClass: "btn-primary",
+					action: function () {
+						$.alert('Canceled!');
+					}
+				}
+			}
+		});
+	}
+</script>
