@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HortifrutiWebApp.Models.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace HortifrutiWebApp.Models
@@ -40,5 +41,10 @@ namespace HortifrutiWebApp.Models
         [Display(Name = "Contato Telêfonico")]
         public string Phone { get; set; }
 
+        public ClientStatus ClientStatus { get; set; }
+
+        public Address Address { get; set; }
+
+        //public ICollection<Request> Requests { get; set; }
     }
 }
