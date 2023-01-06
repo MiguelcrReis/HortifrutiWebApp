@@ -40,7 +40,7 @@ namespace HortifrutiWebApp.Pages.Clients
             var client = new Client();
 
             if (await TryUpdateModelAsync<Client>(client, "client",
-                obj => obj.Name, obj => obj.LastName, obj => obj.Birthday, obj => obj.Email, obj => obj.Cpf))
+                obj => obj.Name, obj => obj.LastName, obj => obj.Birthday, obj => obj.Cpf, obj => obj.Email, obj => obj.Phone))
             {
                 _context.Clients.Add(Client);
                 await _context.SaveChangesAsync();

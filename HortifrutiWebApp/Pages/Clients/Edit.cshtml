@@ -1,0 +1,69 @@
+﻿@page "{id:int?}"
+@model HortifrutiWebApp.Pages.Clients.EditModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+<h4>Client</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Client.IdClient" />
+            <div class="form-group">
+                <label asp-for="Client.Name" class="control-label"></label>
+                <input asp-for="Client.Name" class="form-control" />
+                <span asp-validation-for="Client.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.LastName" class="control-label"></label>
+                <input asp-for="Client.LastName" class="form-control" />
+                <span asp-validation-for="Client.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Birthday" class="control-label"></label>
+                <input asp-for="Client.Birthday" class="form-control" />
+                <span asp-validation-for="Client.Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Cpf" class="control-label"></label>
+                <input asp-for="Client.Cpf" class="form-control" />
+                <span asp-validation-for="Client.Cpf" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Email" class="control-label"></label>
+                <input asp-for="Client.Email" class="form-control" />
+                <span asp-validation-for="Client.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Phone" class="control-label"></label>
+                <input asp-for="Client.Phone" class="form-control" />
+                <span asp-validation-for="Client.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>

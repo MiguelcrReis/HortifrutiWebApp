@@ -27,6 +27,7 @@ namespace HortifrutiWebApp.Models
         [MaxLength(11, ErrorMessage = "O campo {0} deve conter {1} caracteres")]
         [RegularExpression(@"[0-9]{11}$", ErrorMessage = "O campo {0} deve conter 11 dígitos")]
         [Display(Name = "CPF")]
+        //[UIHint("_CustomCPF")]
         public string Cpf { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
