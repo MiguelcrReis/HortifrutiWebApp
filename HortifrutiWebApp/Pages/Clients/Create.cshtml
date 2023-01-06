@@ -17,37 +17,66 @@
 	<div class="row">
 		<div class="col-md-4">
 			<form method="post">
-				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-				<div class="form-group">
-					<label asp-for="Client.Name" class="control-label"></label>
-					<input asp-for="Client.Name" class="form-control" />
-					<span asp-validation-for="Client.Name" class="text-danger"></span>
-				</div>
-				<div class="form-group">
-					<label asp-for="Client.LastName" class="control-label"></label>
-					<input asp-for="Client.LastName" class="form-control" />
-					<span asp-validation-for="Client.LastName" class="text-danger"></span>
-				</div>
-				<div class="form-group">
-					<label asp-for="Client.Birthday" class="control-label"></label>
-					<input asp-for="Client.Birthday" class="form-control" />
-					<span asp-validation-for="Client.Birthday" class="text-danger"></span>
-				</div>
-				<div class="form-group">
-					<label asp-for="Client.Cpf" class="control-label"></label>
-					<input asp-for="Client.Cpf" class="form-control" />
-					<span asp-validation-for="Client.Cpf" class="text-danger"></span>
-				</div>
-				<div class="form-group">
-					<label asp-for="Client.Email" class="control-label"></label>
-					<input asp-for="Client.Email" class="form-control" />
-					<span asp-validation-for="Client.Email" class="text-danger"></span>
-				</div>
-				<div class="form-group">
-					<label asp-for="Client.Phone" class="control-label"></label>
-					<input asp-for="Client.Phone" class="form-control" />
-					<span asp-validation-for="Client.Phone" class="text-danger"></span>
-				</div>
+				<fieldset>
+					<legend>Dados Pessoais</legend>
+
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group">
+						<label asp-for="Client.Name" class="control-label"></label>
+						<input asp-for="Client.Name" class="form-control" />
+						<span asp-validation-for="Client.Name" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Client.LastName" class="control-label"></label>
+						<input asp-for="Client.LastName" class="form-control" />
+						<span asp-validation-for="Client.LastName" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Client.Birthday" class="control-label"></label>
+						<input asp-for="Client.Birthday" class="form-control" />
+						<span asp-validation-for="Client.Birthday" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Client.Cpf" class="control-label"></label>
+						<input asp-for="Client.Cpf" class="form-control" />
+						<span asp-validation-for="Client.Cpf" class="text-danger"></span>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Contatos</legend>
+
+					<div class="form-group">
+						<label asp-for="Client.Email" class="control-label"></label>
+						<input asp-for="Client.Email" class="form-control" />
+						<span asp-validation-for="Client.Email" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Client.Phone" class="control-label"></label>
+						<input asp-for="Client.Phone" class="form-control" />
+						<span asp-validation-for="Client.Phone" class="text-danger"></span>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Endereço</legend>
+
+					<div class="form-group">
+						<label asp-for="Client.Address.Cep" class="control-label">CEP</label>
+						<span>(somente números)</span>
+						<div class="input-group">
+							<input class="form-control col-2" type="text" />
+							<div class="input-group-append">
+								<span class="input-group-text p-1">
+									<i id="cep_loading"></i>
+									<i id="cep_checked"></i>
+									<i id="cep_none"></i>
+								</span>
+							</div>
+						</div>
+						<span class="text-muted d-block" id="endereco"></span>
+						<span class="text-danger field-validation-valid"></span>
+					</div>
+				</fieldset>
+
 				<div class="form-group">
 					<input type="submit" value="Create" class="btn btn-primary" />
 				</div>

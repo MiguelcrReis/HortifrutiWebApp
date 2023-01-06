@@ -1,0 +1,25 @@
+﻿<!-- https://viacep.com.br/exemplo/jquery/ -->
+
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		function cleaning_form_cep() {
+			// Cleaning Form
+			$("#Cliente_Endereco_Logradouro").val('');
+			$("#Cliente_Endereco_Bairro").val('');
+			$("#Cliente_Endereco_Cidade").val('');
+			$("#Cliente_Endereco_Estado").val('');
+
+			$("#endereco").text('Digite um CEP válido e aguarde.');
+
+			// Icon Invalid
+			$("#cep_none").removeClass("d-none");
+			$("#cep_loading").addClass("d-none");
+			$("#cep_checked").addClass("d-none");
+		}
+
+		function consult_cep() {
+
+		}
+	})
+</script>

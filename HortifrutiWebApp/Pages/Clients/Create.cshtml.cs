@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using HortifrutiWebApp.Data;
 using HortifrutiWebApp.Models;
+using HortifrutiWebApp.Models.Enums;
 
 namespace HortifrutiWebApp.Pages.Clients
 {
@@ -38,14 +39,16 @@ namespace HortifrutiWebApp.Pages.Clients
             }
 
             var client = new Client();
+            client.Address = new Address();
+            client.ClientStatus = ClientStatus.Registered;
 
-            if (await TryUpdateModelAsync<Client>(client, "client",
-                obj => obj.Name, obj => obj.LastName, obj => obj.Birthday, obj => obj.Cpf, obj => obj.Email, obj => obj.Phone))
+            if (await TryUpdateModelAsync(client, Client.GetType(), nameof(Client)))
             {
                 _context.Clients.Add(Client);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }
+
             return Page();
         }
         #endregion
