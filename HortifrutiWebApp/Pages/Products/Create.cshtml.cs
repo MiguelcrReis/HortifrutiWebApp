@@ -1,4 +1,5 @@
-﻿using HortifrutiWebApp.Models;
+﻿using HortifrutiWebApp.Data;
+using HortifrutiWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
@@ -7,9 +8,9 @@ namespace HortifrutiWebApp.Pages.Products
 {
     public class CreateModel : PageModel
     {
-        private readonly HortifrutiWebApp.Data.WebAppDbContext _context;
+        private readonly WebAppDbContext _context;
 
-        public CreateModel(HortifrutiWebApp.Data.WebAppDbContext context)
+        public CreateModel(WebAppDbContext context)
         {
             _context = context;
         }

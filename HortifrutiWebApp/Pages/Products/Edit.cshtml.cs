@@ -1,4 +1,5 @@
-﻿using HortifrutiWebApp.Models;
+﻿using HortifrutiWebApp.Data;
+using HortifrutiWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -9,9 +10,9 @@ namespace HortifrutiWebApp.Pages.Products
 {
     public class EditModel : PageModel
     {
-        private readonly HortifrutiWebApp.Data.WebAppDbContext _context;
+        private readonly WebAppDbContext _context;
 
-        public EditModel(HortifrutiWebApp.Data.WebAppDbContext context)
+        public EditModel(WebAppDbContext context)
         {
             _context = context;
         }

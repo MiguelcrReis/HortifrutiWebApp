@@ -1,4 +1,5 @@
-﻿using HortifrutiWebApp.Models;
+﻿using HortifrutiWebApp.Data;
+using HortifrutiWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -8,9 +9,9 @@ namespace HortifrutiWebApp.Pages.Products
 {
     public class DetailsModel : PageModel
     {
-        private readonly HortifrutiWebApp.Data.WebAppDbContext _context;
+        private readonly WebAppDbContext _context;
 
-        public DetailsModel(HortifrutiWebApp.Data.WebAppDbContext context)
+        public DetailsModel(WebAppDbContext context)
         {
             _context = context;
         }

@@ -1,4 +1,5 @@
-﻿using HortifrutiWebApp.Models;
+﻿using HortifrutiWebApp.Data;
+using HortifrutiWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -8,9 +9,9 @@ namespace HortifrutiWebApp.Pages.Products
 {
     public class DeleteModel : PageModel
     {
-        private readonly HortifrutiWebApp.Data.WebAppDbContext _context;
+        private readonly WebAppDbContext _context;
 
-        public DeleteModel(HortifrutiWebApp.Data.WebAppDbContext context)
+        public DeleteModel(WebAppDbContext context)
         {
             _context = context;
         }
