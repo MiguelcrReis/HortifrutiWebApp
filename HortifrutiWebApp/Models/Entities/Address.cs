@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HortifrutiWebApp.Models
+namespace HortifrutiWebApp.Models.Entities
 {
     [Owned]
     public class Address

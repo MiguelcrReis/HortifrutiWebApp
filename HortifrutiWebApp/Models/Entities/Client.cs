@@ -1,13 +1,14 @@
 ﻿using HortifrutiWebApp.Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace HortifrutiWebApp.Models
+namespace HortifrutiWebApp.Models.Entities
 {
     public class Client
     {
         [Key]
-        public int IdClient { get; set; }
+        public int ClientId { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
         [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} o tamanho deve estar entre {2} e {1}")]
@@ -20,7 +21,7 @@ namespace HortifrutiWebApp.Models
 
         [Required(ErrorMessage = "{0} obrigatório")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date, ErrorMessage ="O campo {0} deve conter uma data válida.")]
         [Display(Name = "Data de Nascimento")]
         public DateTime Birthday { get; set; }
 
@@ -28,7 +29,7 @@ namespace HortifrutiWebApp.Models
         [MaxLength(11, ErrorMessage = "O campo {0} deve conter {1} caracteres")]
         [RegularExpression(@"[0-9]{11}$", ErrorMessage = "O campo {0} deve conter 11 dígitos")]
         [Display(Name = "CPF")]
-        //[UIHint("_CustomCPF")]
+        [UIHint("_CustomCPF")]
         public string Cpf { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
@@ -45,6 +46,6 @@ namespace HortifrutiWebApp.Models
 
         public Address Address { get; set; }
 
-        //public ICollection<Request> Requests { get; set; }
+        public ICollection<Order> Orders{ get; set; }
     }
 }
