@@ -8,7 +8,7 @@
 <h1>@ViewData["Title"]</h1>
 
 <div>
-	<h4><b>Código: </b> @Model.Product.IdProduct.ToString("D6")</h4>
+	<h4><b>Código: </b> @Model.Product.ProductId.ToString("D6")</h4>
 	<hr />
 	<dl class="row">
 		<dt class="col-sm-2">
@@ -38,6 +38,6 @@
 	</dl>
 </div>
 <div>
-	<a asp-page="./Edit" asp-route-id="@Model.Product.IdProduct" class="btn btn-secondary">Edit</a> |
+	<a asp-page="./Edit" asp-route-id="@Model.Product.ProductId" class="btn btn-secondary">Edit</a> |
 	<a asp-page="./Index" class="btn btn-secondary">Back to List</a>
 </div>

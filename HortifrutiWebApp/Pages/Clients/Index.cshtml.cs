@@ -1,5 +1,5 @@
 using HortifrutiWebApp.Data;
-using HortifrutiWebApp.Models;
+using HortifrutiWebApp.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;

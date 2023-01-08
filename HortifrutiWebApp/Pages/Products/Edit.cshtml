@@ -7,13 +7,13 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<h4><b>Código: </b> @Model.Product.IdProduct.ToString("D6")</h4>
+<h4><b>Código: </b> @Model.Product.ProductId.ToString("D6")</h4>
 <hr />
 <div class="row">
 	<div class="col-md-4">
 		<form method="post">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<input type="hidden" asp-for="Product.IdProduct" />
+			<input type="hidden" asp-for="Product.ProductId" />
 			<div class="form-group">
 				<label asp-for="Product.Name" class="control-label"></label>
 				<input asp-for="Product.Name" class="form-control" />

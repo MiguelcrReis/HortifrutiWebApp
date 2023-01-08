@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HortifrutiWebApp.Data;
-using HortifrutiWebApp.Models;
+using HortifrutiWebApp.Models.Entities;
 
 namespace HortifrutiWebApp.Pages.Clients
 {
@@ -30,7 +30,7 @@ namespace HortifrutiWebApp.Pages.Clients
                 return NotFound();
             }
 
-            Client = await _context.Clients.FirstOrDefaultAsync(m => m.IdClient == id);
+            Client = await _context.Clients.FirstOrDefaultAsync(m => m.ClientId == id);
 
             if (Client == null)
             {
@@ -55,7 +55,7 @@ namespace HortifrutiWebApp.Pages.Clients
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ClientExists(Client.IdClient))
+                if (!ClientExists(Client.ClientId))
                 {
                     return NotFound();
                 }
@@ -70,7 +70,7 @@ namespace HortifrutiWebApp.Pages.Clients
 
         private bool ClientExists(int id)
         {
-            return _context.Clients.Any(e => e.IdClient == id);
+            return _context.Clients.Any(e => e.ClientId == id);
         }
     }
 }

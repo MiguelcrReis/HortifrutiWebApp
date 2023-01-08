@@ -1,5 +1,5 @@
 ﻿using HortifrutiWebApp.Data;
-using HortifrutiWebApp.Models;
+using HortifrutiWebApp.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +25,7 @@ namespace HortifrutiWebApp.Pages.Products
                 return NotFound();
             }
 
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.IdProduct == id);
+            Product = await _context.Product.FirstOrDefaultAsync(m => m.ProductId == id);
 
             if (Product == null)
             {

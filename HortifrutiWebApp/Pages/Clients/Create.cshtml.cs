@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using HortifrutiWebApp.Data;
-using HortifrutiWebApp.Models;
+using HortifrutiWebApp.Models.Entities;
 using HortifrutiWebApp.Models.Enums;
 
 namespace HortifrutiWebApp.Pages.Clients

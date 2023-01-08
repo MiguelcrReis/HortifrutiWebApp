@@ -45,9 +45,9 @@
 					@Html.DisplayFor(modelItem => item.Stock)
 				</td>
 				<td>
-					<a asp-page="./Edit" asp-route-id="@item.IdProduct" class="btn btn-secondary">Edit</a> |
-					<a asp-page="./Details" asp-route-id="@item.IdProduct" class="btn btn-info">Details</a> |
-					<a asp-page="./Delete" asp-route-id="@item.IdProduct" class="btn btn-danger">Delete</a>
+					<a asp-page="./Edit" asp-route-id="@item.ProductId" class="btn btn-secondary">Edit</a> |
+					<a asp-page="./Details" asp-route-id="@item.ProductId" class="btn btn-info">Details</a> |
+					<a asp-page="./Delete" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
 				</td>
 			</tr>
 		}
