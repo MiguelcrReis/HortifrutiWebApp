@@ -24,7 +24,7 @@ namespace HortifrutiWebApp.Pages
 
         public async Task OnGetAsync()
         {
-            Products = await _context.Product.ToListAsync<Product>();
+            Products = await _context.Products.ToListAsync<Product>();
         }
     }
 }
