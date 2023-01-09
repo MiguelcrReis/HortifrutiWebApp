@@ -5,29 +5,36 @@
 }
 
 <div class="text-center">
-	<h1 class="display-4">Welcome to HortiFruti Reis</h1>
+	<h1 class="display-4">Bem-vindo a HortiFruti Reis!</h1>
 	<p>A Hortifruti que coloca açúcar no mamão para você.</p>
 </div>
 
 <div class="row">
-	@foreach (var product in Model.Products)
+	@if (Model.Products.Count > 0)
 	{
-		<div class="col-sm-2">
-			<div class="card text-center bg-light mb-4">
-				<img class="card-img-top" @*style="max-width: 150px; max-height: 150px; width: auto; height: auto;"*@ src="/img/product/@String.Concat(product.ProductId.ToString("D6"),".png")"
-					 alt="@product.Name image" />
-				<div class="card-header">
-					R$ @product.Price.ToString("F2")
-				</div>
-				<div class="card-body" style="height: 90px;">
-					<h5 class="card-title">@product.Name</h5>
-					<p class="card-text">@product.Descrition</p>
-				</div>
-				<div class="card-footer">
-					<div><a href="#" class="btn btn-primary">Adicionar ao Carrinho</a></div>
-					<small class="text-muted">Estoque: @product.Stock</small>
+		@foreach (var product in Model.Products)
+		{
+			<div class="col-sm-2">
+				<div class="card text-center bg-light mb-4">
+					<img class="card-img-top" src="/img/product/@String.Concat(product.ProductId.ToString("D6"), ".png")"
+						 alt="@product.Name image" />
+					<div class="card-header">
+						R$ @product.Price.Value.ToString("F2")
+					</div>
+					<div class="card-body" style="height: 90px;">
+						<h5 class="card-title">@product.Name</h5>
+						<p class="card-text">@product.Descrition</p>
+					</div>
+					<div class="card-footer">
+						<div><a href="#" class="btn btn-primary">Adicionar ao Carrinho</a></div>
+						<small class="text-muted">Estoque: @product.Stock</small>
+					</div>
 				</div>
 			</div>
-		</div>
+		}
+	}
+	else
+	{
+		<h1>Não há produtos cadastrados.</h1>
 	}
 </div>

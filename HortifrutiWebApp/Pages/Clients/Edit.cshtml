@@ -2,68 +2,121 @@
 @model HortifrutiWebApp.Pages.Clients.EditModel
 
 @{
-    Layout = null;
+	Layout = null;
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
+	<meta name="viewport" content="width=device-width" />
+	<title>Edit</title>
 </head>
 <body>
 
-<h4>Client</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Client.ClientId" />
-            <div class="form-group">
-                <label asp-for="Client.Name" class="control-label"></label>
-                <input asp-for="Client.Name" class="form-control" />
-                <span asp-validation-for="Client.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.LastName" class="control-label"></label>
-                <input asp-for="Client.LastName" class="form-control" />
-                <span asp-validation-for="Client.LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.Birthday" class="control-label"></label>
-                <input asp-for="Client.Birthday" class="form-control" />
-                <span asp-validation-for="Client.Birthday" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.Cpf" class="control-label"></label>
-                <input asp-for="Client.Cpf" class="form-control" />
-                <span asp-validation-for="Client.Cpf" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.Email" class="control-label"></label>
-                <input asp-for="Client.Email" class="form-control" />
-                <span asp-validation-for="Client.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.Phone" class="control-label"></label>
-                <input asp-for="Client.Phone" class="form-control" />
-                <span asp-validation-for="Client.Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+	<h4>Client</h4>
+	<hr />
+	<div class="row">
+		<div class="col-md-4">
+			<form method="post">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<input type="hidden" asp-for="Client.ClientId" />
+				<fieldset>
+					<legend>Dados Pessoais</legend>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group">
+						<label asp-for="Client.Name" class="control-label"></label>
+						<input asp-for="Client.Name" class="form-control" />
+						<span asp-validation-for="Client.Name" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Client.LastName" class="control-label"></label>
+						<input asp-for="Client.LastName" class="form-control" />
+						<span asp-validation-for="Client.LastName" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Client.Birthday" class="control-label"></label>
+						<input asp-for="Client.Birthday" class="form-control" />
+						<span asp-validation-for="Client.Birthday" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Client.Cpf" class="control-label"></label>
+						<input asp-for="Client.Cpf" class="form-control" />
+						<span asp-validation-for="Client.Cpf" class="text-danger"></span>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Contatos</legend>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+					<div class="form-group">
+						<label asp-for="Client.Email" class="control-label"></label>
+						<input asp-for="Client.Email" class="form-control" />
+						<span asp-validation-for="Client.Email" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Client.Phone" class="control-label"></label>
+						<span>(com DDD, somente números)</span>
+						<input asp-for="Client.Phone" class="form-control" />
+						<span asp-validation-for="Client.Phone" class="text-danger"></span>
+					</div>
+				</fieldset>
+				<fieldset>
+
+					<legend>Endereço</legend>
+
+					<div class="form-group">
+						<label asp-for="Client.Address.Cep" class="control-label"></label>
+						<span>(somente números)</span>
+						<div class="input-group">
+							<input asp-for="Client.Address.Cep" class="form-control col-2" />
+							<div class="input-group-append">
+								<span class="input-group-text p-1">
+									<i class="fi-xnsrls-loading d-none" id="cep_loading"></i>
+									<i class="fi-xwsuxl-check d-none" id="cep_checked"></i>
+									<i class="fi-xwsuxl-times-wide" id="cep_none"></i>
+								</span>
+							</div>
+						</div>
+						<span class="text-muted d-block" id="endereco">Digite um CEP válido e aguarde um instante.</span>
+						<span asp-validation-for="Client.Address.Cep" class="text-danger"></span>
+						<input type="hidden" asp-for="Client.Address.Street" value="" />
+						<span asp-validation-for="Client.Address.Street" class="text-danger"></span>
+						<input type="hidden" asp-for="Client.Address.Neighborhood" value="" />
+						<input type="hidden" asp-for="Client.Address.City" value="" />
+						<input type="hidden" asp-for="Client.Address.State" value="" />
+					</div>
+					<div class="form-group">
+						<label asp-for="Client.Address.Number" class="control-label"></label>
+						<input asp-for="Client.Address.Number" class="form-control col-2" />
+						<span asp-validation-for="Client.Address.Number" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Client.Address.Complement" class="control-label"></label>
+						<input asp-for="Client.Address.Complement" class="form-control col-4" />
+						<span asp-validation-for="Client.Address.Complement" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Client.Address.Reference" class="control-label"></label>
+						<input asp-for="Client.Address.Reference" class="form-control col-4" />
+						<span asp-validation-for="Client.Address.Reference" class="text-danger"></span>
+					</div>
+				</fieldset>
+
+				<div class="form-group text-left">
+					<a asp-page="Index" class="btn btn-info">Cancelar</a>
+					<input type="submit" value="Create" class="btn btn-primary" />
+				</div>
+			</form>
+		</div>
+	</div>
+	<div>
+		<a asp-page="./Index">Back to List</a>
+	</div>
 </body>
+@section Scripts {
+	@{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{ await Html.RenderPartialAsync("_CustomConfirm");}
+	@{ await Html.RenderPartialAsync("_ConsultCEP");}
+}
 </html>

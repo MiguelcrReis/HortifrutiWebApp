@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" lang="pt-br" />
+	<title>Área Administrativa :: Hortifruti Reis</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lumen.css" />
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<div class="container">
+				<a class="navbar-brand" asp-area="" asp-page="/Index">HortifrutiWebApp</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor01"
+						aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarColor01">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" asp-area="" asp-page="/Index">Home</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" asp-area="" asp-page="/Products/Index">Produtos</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" asp-area="" asp-page="/Clients/Index">Clientes</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" asp-area="" asp-page="/Admin">Administração</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="container">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+
+	<footer class="border-top footer text-muted">
+		<div class="container">
+			&copy; 2022 - HortifrutiWebApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
+		</div>
+	</footer>
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script defer src="https://friconix.com/cdn/friconix.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+
+	@RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -22,7 +22,7 @@
 					<th>@Html.DisplayNameFor(x => x.Clients[0].Email)</th>
 					<th>@Html.DisplayNameFor(x => x.Clients[0].Phone)</th>
 					<th>@Html.DisplayNameFor(x => x.Clients[0].Birthday)</th>
-					<th></th>
+					<th class="text-center">Ações</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -55,5 +55,5 @@
 </main>
 
 @section Scripts{
-	@{ await Html.RenderPartialAsync(@"DisplayTemplates\_CustomConfirm.cshtml");}
+	@{ await Html.RenderPartialAsync(@"_CustomConfirm.cshtml");}
 }

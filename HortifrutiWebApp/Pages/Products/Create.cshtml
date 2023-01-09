@@ -2,47 +2,64 @@
 @model HortifrutiWebApp.Pages.Products.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Novo Produto";
 }
 
-<h1>@ViewData["Title"]</h1>
+<style>
+	.custom-file-label::after {
+		content: "Procurar";
+	}
+</style>
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Product.Name" class="control-label"></label>
-                <input asp-for="Product.Name" class="form-control" />
-                <span asp-validation-for="Product.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.Descrition" class="control-label"></label>
-                <input asp-for="Product.Descrition" class="form-control" />
-                <span asp-validation-for="Product.Descrition" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.Price" class="control-label"></label>
-                <input asp-for="Product.Price" class="form-control" />
-                <span asp-validation-for="Product.Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.Stock" class="control-label"></label>
-                <input asp-for="Product.Stock" class="form-control" />
-                <span asp-validation-for="Product.Stock" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-page="Index" class="btn btn-secondary">Back to List</a>
-</div>
-
+<main class="container mt-3">
+	<div class="row justify-content-md-center">
+		<div class="col-sm-12">
+			<div>
+				<h1>@ViewData["Title"]</h1>
+				<hr />
+				<form method="post" class="mt-3 mb-5" enctype="multipart/form-data">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group">
+						<label asp-for="Product.Name" class="control-label"></label>
+						<input asp-for="Product.Name" class="form-control col-6" />
+						<span asp-validation-for="Product.Name" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Product.Descrition" class="control-label"></label>
+						<textarea asp-for="Product.Descrition" class="form-control col-6" rows="6"></textarea>/>
+						<span asp-validation-for="Product.Descrition" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Product.Price" class="control-label"></label>
+						<input asp-for="Product.Price" class="form-control col-2" />
+						<span asp-validation-for="Product.Price" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Product.Stock" class="control-label"></label>
+						<input asp-for="Product.Stock" class="form-control col-2" />
+						<span asp-validation-for="Product.Stock" class="text-danger"></span>
+					</div>
+					@*<div class="form-group">
+						<label asp-for="ImageProduct" class="control-label"></label>
+						<div class="custom-file col-4 d-block">
+							<input asp-for="ImageProduct" class="custom-file-input" accept="image/*" />
+							<label class="custom-file-label">Clique aqui para alterar a imagem.</label>
+						</div>
+						<span asp-validation-for="ImageProduct" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<img src="@Model.ImagePath" class="image-thumbnail" asp-append-version="true"
+							 style="max-height:300px;max-width:300px;border:solid 1px gray; border-radius:5px;" />
+					</div>*@
+					<div class="form-group text-left">
+						<a asp-page="./Index" class="btn btn-info">Cancelar</a>
+						<input type="submit" value="Create" class="btn btn-primary" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</main>
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
