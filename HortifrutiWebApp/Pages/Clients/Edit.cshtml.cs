@@ -42,12 +42,29 @@ namespace HortifrutiWebApp.Pages.Clients
 
         public async Task<IActionResult> OnPostAsync()
         {
+            // Garante a não alteração dos campos de e-mail e cpf.
+            var client = await _context.Clients.Select(x => new { x.ClientId, x.Email, x.Cpf }).FirstOrDefaultAsync();
+            Client.Email = client.Email;
+            Client.Cpf = client.Cpf;
+
+            if (ModelState.Keys.Contains("Client.Email"))
+            {
+                ModelState["Client.Email"].Errors.Clear();
+                ModelState.Remove("Client.Email");
+            }
+            if (ModelState.Keys.Contains("Client.Cpf"))
+            {
+                ModelState["Client.Cpf"].Errors.Clear();
+                ModelState.Remove("Client.Cpf");
+            }
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
             _context.Attach(Client).State = EntityState.Modified;
+            _context.Attach(Client.Address).State = EntityState.Modified;
 
             try
             {

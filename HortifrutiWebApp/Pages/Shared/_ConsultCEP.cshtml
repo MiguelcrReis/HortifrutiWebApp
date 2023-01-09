@@ -5,12 +5,12 @@
 
 		function cleaning_form_cep() {
 			// Cleaning Form
-			$("#Cliente_Endereco_Logradouro").val('');
-			$("#Cliente_Endereco_Bairro").val('');
-			$("#Cliente_Endereco_Cidade").val('');
-			$("#Cliente_Endereco_Estado").val('');
+			$("#Client_Address_Street").val('');
+			$("#Client_Address_Neighborhood").val('');
+			$("#Client_Address_City").val('');
+			$("#Client_Address_State").val('');
 
-			$("#endereco").text('Digite um CEP válido e aguarde.');
+			$("#address").text('Digite um CEP válido e aguarde.');
 
 			// Icon Invalid
 			$("#cep_none").removeClass("d-none");
@@ -20,6 +20,53 @@
 
 		function consult_cep() {
 
-		}
-	})
+			var cep = $("#Client_Address_Cep").val().replace(/\D/g, '');
+
+			if (cep != "") {
+
+				// Expressão regular para validar o cep.
+				var validCep = /^[0-9]{8}$/;
+
+				if (validCep.test(cep)) {
+
+					// Show icon Loading
+					$("#cep_none").addClass("d-none");
+					$("#cep_loading").removeClass("d-none");
+					$("#cep_checked").addClass("d-none");
+
+					// Consult ws ViaCep
+					$.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?",
+						function (data) {
+
+							// Show icon checked
+							$("#cep_none").addClass("d-none");
+							$("#cep_loading").addClass("d-none");
+							$("#cep_checked").removeClass("d-none");
+
+							if (!("erro" in data)) {
+								// Update from with data
+								$("#Client_Address_Street").val(data.logradouro);
+								$("#Client_Address_Neighborhood").val(data.bairro);
+								$("#Client_Address_City").val(data.localidade);
+								$("#Client_Address_State").val(data.uf);
+								$('#address').text(data.logradouro + ", " + data.bairro + ", " + data.localidade + ", "
+									+ data.uf + ".");
+							} else {
+								cleaning_form_cep();
+								showAlert("O CEP inserido não corresponde a nenhum endereço válido!");
+							}
+						});
+				} else {
+					cleaning_form_cep();
+					showAlert("CEP com formato incorreto!");
+				}
+			}
+			else {
+				cleaning_form_cep();
+			}
+		};
+		// Quando o campo perde o foco, a digitação sair dele.
+		$("#Client_Address_Cep").blur(consult_cep);
+		consult_cep();
+	});
 </script>
