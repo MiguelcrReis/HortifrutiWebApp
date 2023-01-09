@@ -26,7 +26,7 @@
 					</div>
 					<div class="form-group">
 						<label asp-for="Product.Descrition" class="control-label"></label>
-						<textarea asp-for="Product.Descrition" class="form-control col-6" rows="6"></textarea>/>
+						<textarea asp-for="Product.Descrition" class="form-control col-6" rows="6"></textarea>
 						<span asp-validation-for="Product.Descrition" class="text-danger"></span>
 					</div>
 					<div class="form-group">
@@ -39,7 +39,7 @@
 						<input asp-for="Product.Stock" class="form-control col-2" />
 						<span asp-validation-for="Product.Stock" class="text-danger"></span>
 					</div>
-					@*<div class="form-group">
+					<div class="form-group">
 						<label asp-for="ImageProduct" class="control-label"></label>
 						<div class="custom-file col-4 d-block">
 							<input asp-for="ImageProduct" class="custom-file-input" accept="image/*" />
@@ -50,7 +50,7 @@
 					<div class="form-group">
 						<img src="@Model.ImagePath" class="image-thumbnail" asp-append-version="true"
 							 style="max-height:300px;max-width:300px;border:solid 1px gray; border-radius:5px;" />
-					</div>*@
+					</div>
 					<div class="form-group text-left">
 						<a asp-page="./Index" class="btn btn-info">Cancelar</a>
 						<input type="submit" value="Create" class="btn btn-primary" />
