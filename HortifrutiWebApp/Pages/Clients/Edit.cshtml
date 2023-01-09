@@ -1,9 +1,6 @@
 ﻿@page "{id:int?}"
 @model HortifrutiWebApp.Pages.Clients.EditModel
 
-@{
-	Layout = null;
-}
 
 <!DOCTYPE html>
 
@@ -42,7 +39,8 @@
 					</div>
 					<div class="form-group">
 						<label asp-for="Client.Cpf" class="control-label"></label>
-						<input asp-for="Client.Cpf" class="form-control" />
+						<span>(somente números)</span>
+						<span class="font-weight-bold d-block">@Html.DisplayFor(modelitem => modelitem.Client.Cpf)</span>
 						<span asp-validation-for="Client.Cpf" class="text-danger"></span>
 					</div>
 				</fieldset>
@@ -51,7 +49,7 @@
 
 					<div class="form-group">
 						<label asp-for="Client.Email" class="control-label"></label>
-						<input asp-for="Client.Email" class="form-control" />
+						<span class="text-dark d-block">@Html.DisplayFor(modelitem => modelitem.Client.Email)</span>
 						<span asp-validation-for="Client.Email" class="text-danger"></span>
 					</div>
 					<div class="form-group">
@@ -69,7 +67,7 @@
 						<label asp-for="Client.Address.Cep" class="control-label"></label>
 						<span>(somente números)</span>
 						<div class="input-group">
-							<input asp-for="Client.Address.Cep" class="form-control col-2" />
+							<input asp-for="Client.Address.Cep" class="form-control col-3" />
 							<div class="input-group-append">
 								<span class="input-group-text p-1">
 									<i class="fi-xnsrls-loading d-none" id="cep_loading"></i>
