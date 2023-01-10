@@ -28,6 +28,11 @@
 							<a class="nav-link" asp-area="" asp-page="/Privacy">Política de Privacidade</a>
 						</li>
 					</ul>
+					<form action="/Index" method="get" class="form-inline my-2 my-lg-0" id="formSearch">
+						<input type="text" name="q" placeholder="Nome do produto..." class="form-control mr-sm-2" />
+						<input type="hidden" name="s" id="s" value="0" />
+						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+					</form>
 				</div>
 			</div>
 		</nav>

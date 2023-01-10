@@ -10,18 +10,31 @@
 </div>
 
 <div class="row">
+	<div class="col-12 mb-3">
+		<form class="form-inline float-right">
+			<label>Filtro:</label>&nbsp;
+			<select class="form-control custom-select-sm" id="sequenceSelect">
+				<option value="0">Selecione a ordem de exibição</option>
+				<option value="1">Filtrar pelo nome do produto</option>
+				<option value="2">Filtrar pelo menor preço</option>
+				<option value="3">Filtrar pelo maior preço</option>
+
+			</select>
+		</form>
+	</div>
+
 	@if (Model.Products.Count > 0)
 	{
 		@foreach (var product in Model.Products)
 		{
-			<div class="col-sm-2">
+			<div class="col-sm-4">
 				<div class="card text-center bg-light mb-4">
 					<img class="card-img-top" src="/img/product/@String.Concat(product.ProductId.ToString("D6"), ".jpg")"
 						 alt="@product.Name image" />
 					<div class="card-header">
 						R$ @product.Price.Value.ToString("F2")
 					</div>
-					<div class="card-body" style="height: 90px;">
+					<div class="card-body" style="height: 140px;">
 						<h5 class="card-title">@product.Name</h5>
 						<p class="card-text">@product.Descrition</p>
 					</div>
@@ -35,6 +48,44 @@
 	}
 	else
 	{
-		<h1>Não há produtos cadastrados.</h1>
-	}
+		if (Request.QueryString.HasValue)
+		{<div class="col-12"><h1>Nenhum resultado encotrado para <b>@Request.Query["search"]</b>.</h1></div>}
+	else
+	{<div class="col-12"><h1>Não há produtos cadastrados.</h1></div>}
+
+}
 </div>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+	@*Função js para retornar a QueryString da page*@
+
+	<script>
+		function getUrlsVars() {
+			var vars = [], hash;
+			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+			for (var i = 0; i < hashes.length; i++) {
+				hash = hashes[i].split('=');
+				vars.push(hash[0]);
+				vars[hash[0]] = hash[1];
+			}
+			return vars;
+		}
+
+		$(document).ready(function () {
+			var qs = getUrlsVars();
+
+			if (qs["s"] != null) {
+				$("#sequenceSelect").val(qs["s"])
+				$("#s").val(qs["s"])
+			}
+		});
+
+		$("#sequenceSelect").change(function () {
+			$("#s").val($("#sequenceSelect").val());
+			$("#formSearch").submit();
+		});
+	</script>
+}
