@@ -6,17 +6,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\lib\globalize\**" />
-    <Compile Remove="wwwroot\lib\jquery-validation-globalize\**" />
-    <Content Remove="wwwroot\lib\globalize\**" />
-    <Content Remove="wwwroot\lib\jquery-validation-globalize\**" />
-    <EmbeddedResource Remove="wwwroot\lib\globalize\**" />
-    <EmbeddedResource Remove="wwwroot\lib\jquery-validation-globalize\**" />
-    <None Remove="wwwroot\lib\globalize\**" />
-    <None Remove="wwwroot\lib\jquery-validation-globalize\**" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\currency.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\date.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\message.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\number.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\plural.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\relative-time.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize-runtime\unit.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\currency.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\date.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\message.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\number.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\plural.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\relative-time.js" />
+    <None Include="wwwroot\lib\globalize\dist\globalize\unit.js" />
+    <None Include="wwwroot\lib\globalize\dist\node-main.js" />
+    <None Include="wwwroot\lib\jquery-validation-globalize\gulpfile.js" />
+    <None Include="wwwroot\lib\jquery-validation-globalize\jquery.validate.globalize.js" />
+    <None Include="wwwroot\lib\jquery-validation-globalize\jquery.validate.globalize.min.js" />
     <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
     <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
     <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
