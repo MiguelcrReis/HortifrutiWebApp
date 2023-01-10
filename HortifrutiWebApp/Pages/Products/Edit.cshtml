@@ -20,6 +20,7 @@
 				<hr />
 				<form method="post" class="mt-3 mb-5" enctype="multipart/form-data">
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<input type="hidden" asp-for="Product.ProductId" />
 					<div class="form-group">
 						<label asp-for="Product.Name" class="control-label"></label>
 						<input asp-for="Product.Name" class="form-control col-6" />
