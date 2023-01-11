@@ -10,21 +10,21 @@
 </div>
 
 <div class="row">
-	<div class="col-12 mb-3">
-		<form class="form-inline float-right">
-			<label>Filtro:</label>&nbsp;
-			<select class="form-control custom-select-sm" id="sequenceSelect">
-				<option value="0">Selecione a ordem de exibição</option>
-				<option value="1">Filtrar pelo nome do produto</option>
-				<option value="2">Filtrar pelo menor preço</option>
-				<option value="3">Filtrar pelo maior preço</option>
-
-			</select>
-		</form>
-	</div>
-
 	@if (Model.Products.Count > 0)
 	{
+		<div class="col-12 mb-3">
+			<form class="form-inline float-right">
+				<label>Filtro:</label>&nbsp;
+				<select class="form-control custom-select-sm" id="sequenceSelect">
+					<option value="0">Selecione a ordem de exibição</option>
+					<option value="1">Filtrar pelo nome do produto</option>
+					<option value="2">Filtrar pelo menor preço</option>
+					<option value="3">Filtrar pelo maior preço</option>
+
+				</select>
+			</form>
+		</div>
+
 		@foreach (var product in Model.Products)
 		{
 			<div class="col-sm-4">

@@ -39,7 +39,7 @@ namespace HortifrutiWebApp.Pages.Products
                 return NotFound();
             }
 
-            Product = await _context.Products.FirstOrDefaultAsync(p => p.ProductId == id && p.Stock > 0);
+            Product = await _context.Products.FirstOrDefaultAsync(p => p.ProductId == id);
 
             if (Product == null)
             {
