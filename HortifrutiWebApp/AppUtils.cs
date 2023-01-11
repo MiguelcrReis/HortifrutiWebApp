@@ -36,15 +36,16 @@ namespace HortifrutiWebApp
             {
                 float x = (size.Width - size.Height) / 2.0F;
                 rectangle = new Rectangle((int)x, 0, size.Height, size.Height);
+                // Recorta a imagem com base no rectangle computado
+                img.Mutate(i => i.Crop(rectangle));
             }
-            else
+            else if (size.Height > size.Width)
             {
                 float y = (size.Height - size.Width) / 2.0F;
                 rectangle = new Rectangle((int)y, 0, size.Width, size.Width);
+                // Recorta a imagem com base no rectangle computado
+                img.Mutate(i => i.Crop(rectangle));
             }
-
-            // Recorta a imagem com base no rectangle computado
-            img.Mutate(i => i.Crop(rectangle));
 
             // Monta o caminho da da imagem (~/img/product/000000.jpeg)
             var pathImage = Path.Combine(webHostEnvironment.WebRootPath, "img\\product", productId.ToString("D6") + ".jpg");
