@@ -27,7 +27,7 @@
 			<tbody>
 				@foreach (var item in Model.Products)
 				{
-					<tr>
+					<tr class="@(item.Stock > 0 ? "" : "bg-warning")">
 						<td>@Html.DisplayFor(modelItem => item.Name)</td>
 						<td>@Html.DisplayFor(modelItem => item.Descrition)</td>
 						<td>@Html.DisplayFor(modelItem => item.Price)</td>

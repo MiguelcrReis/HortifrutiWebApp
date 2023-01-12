@@ -23,7 +23,7 @@
 
 				</select>
 			</form>
-		</div> 
+		</div>
 
 		@foreach (var product in Model.Products)
 		{
@@ -39,8 +39,20 @@
 						<p class="card-text">@product.Descrition</p>
 					</div>
 					<div class="card-footer">
-						<div><a href="#" class="btn btn-danger">Adicionar ao Carrinho</a></div>
-						<small class="text-muted">Estoque: @product.Stock</small>
+						@if (product.Stock > 0)
+						{
+							<div><a href="#" class="btn btn-primary">Adicionar ao Carrinho</a></div>
+							<small class="text-success">Estoque: @product.Stock</small>
+						}
+						else
+						{
+							<div>
+								<button class="btn btn-light disabled" disabled>
+									<small>Aguardando Reabastecimento</small>
+								</button>
+							</div>
+							<small class="text-danger"><b>Produto Esgotado</b></small>
+						}
 					</div>
 				</div>
 			</div>
