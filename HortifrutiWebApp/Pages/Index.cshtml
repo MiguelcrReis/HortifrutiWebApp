@@ -6,7 +6,7 @@
 
 <div class="text-center">
 	<h1 class="display-4">Bem-vindo a HortiFruti Reis!</h1>
-	<p>A Hortifruti que coloca açúcar no mamão para você.</p>
+	<h5>A Hortifruti que coloca açúcar no mamão para você.</h5>
 </div>
 
 <div class="row">
@@ -23,23 +23,23 @@
 
 				</select>
 			</form>
-		</div>
+		</div> 
 
 		@foreach (var product in Model.Products)
 		{
-			<div class="col-sm-4">
+			<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch">
 				<div class="card text-center bg-light mb-4">
 					<img class="card-img-top" src="/img/product/@String.Concat(product.ProductId.ToString("D6"), ".jpg")"
 						 alt="@product.Name image" />
 					<div class="card-header">
 						R$ @product.Price.Value.ToString("F2")
 					</div>
-					<div class="card-body" style="height: 140px;">
+					<div class="card-body">
 						<h5 class="card-title">@product.Name</h5>
 						<p class="card-text">@product.Descrition</p>
 					</div>
 					<div class="card-footer">
-						<div><a href="#" class="btn btn-primary">Adicionar ao Carrinho</a></div>
+						<div><a href="#" class="btn btn-danger">Adicionar ao Carrinho</a></div>
 						<small class="text-muted">Estoque: @product.Stock</small>
 					</div>
 				</div>
