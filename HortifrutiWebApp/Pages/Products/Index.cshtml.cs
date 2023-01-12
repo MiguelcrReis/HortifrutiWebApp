@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HortifrutiWebApp.Pages.Products
@@ -25,7 +26,7 @@ namespace HortifrutiWebApp.Pages.Products
 
         public async Task OnGetAsync()
         {
-            Products = await _context.Products.ToListAsync();
+            Products = await _context.Products.OrderBy(p => p.Name).ToListAsync();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int? id)

@@ -24,7 +24,7 @@ namespace HortifrutiWebApp.Pages
             _context = context;
         }
 
-        public async Task OnGetAsync([FromQuery(Name = "q")] string search, [FromQuery(Name = "s")] int? sequence)
+        public async Task OnGetAsync([FromQuery(Name = "q")] string search, [FromQuery(Name = "s")] int? sequence = 1)
         {
             var query = _context.Products.AsQueryable();
 
