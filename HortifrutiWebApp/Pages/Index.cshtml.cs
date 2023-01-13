@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,6 +60,12 @@ namespace HortifrutiWebApp.Pages
                 }
             }
 
+            var queryCount = query;
+            int productsCount = queryCount.Count();
+            // Devolve o valor teto de um decimal
+            this.QuantityPages = Convert.ToInt32(Math.Ceiling(productsCount * 1M / PageSize));
+
+            query = query.Skip(PageSize * (this.CurrentPage - 1)).Take(PageSize);
             Products = await query.ToListAsync();
         }
     }

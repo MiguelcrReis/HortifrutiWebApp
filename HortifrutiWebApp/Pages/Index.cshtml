@@ -32,6 +32,14 @@
 
 					</select>
 				</form>
+				<nav class="d-inline-block">
+					<ul class="pagination pagination-sm my-0">
+						@for (int i = 1; i < Model.QuantityPages; i++)
+						{
+							<li class="page-item"><button class="page-link" value="@i">@i</button></li>
+						}
+					</ul>
+				</nav>
 			</div>
 		</div>
 	</div>
