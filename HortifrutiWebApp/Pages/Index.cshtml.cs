@@ -12,9 +12,13 @@ namespace HortifrutiWebApp.Pages
 {
     public class IndexModel : PageModel
     {
+        private const int PageSize = 12;
         private readonly ILogger<IndexModel> _logger;
 
         private readonly WebAppDbContext _context;
+
+        public int CurrentPage { get; set; }
+        public int QuantityPages { get; set; }
 
         public IList<Product> Products;
 
@@ -24,8 +28,11 @@ namespace HortifrutiWebApp.Pages
             _context = context;
         }
 
-        public async Task OnGetAsync([FromQuery(Name = "q")] string search, [FromQuery(Name = "s")] int? sequence = 1)
+        public async Task OnGetAsync([FromQuery(Name = "q")] string search, [FromQuery(Name = "s")] int? sequence = 1,
+            [FromQuery(Name = "p")] int? page = 1)
         {
+            this.CurrentPage = page.Value;
+
             var query = _context.Products.AsQueryable();
 
             if (!string.IsNullOrEmpty(search))
