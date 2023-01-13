@@ -39,7 +39,7 @@ namespace HortifrutiWebApp.Pages
                 switch (sequence.Value)
                 {
                     case 1:
-                        query = query.OrderBy(p => p.Name);
+                        query = query.OrderBy(p => p.Name.ToUpper());
                         break;
                     case 2:
                         query = query.OrderBy(p => p.Price);

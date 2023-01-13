@@ -7,24 +7,36 @@
 <div class="text-center">
 	<h1 class="display-4">Bem-vindo a HortiFruti Reis!</h1>
 	<h5>A Hortifruti que coloca açúcar no mamão para você.</h5>
+	<hr />
 </div>
 
-<div class="row">
-	@if (Model.Products.Count > 0)
-	{
-		<div class="col-12 mb-3">
-			<form class="form-inline float-right">
-				<label>Filtro:</label>&nbsp;
-				<select class="form-control custom-select-sm" id="sequenceSelect">
-					<option value="0">Selecione a ordem de exibição</option>
-					<option value="1">Filtrar pelo nome do produto</option>
-					<option value="2">Filtrar pelo menor preço</option>
-					<option value="3">Filtrar pelo maior preço</option>
+@if (Model.Products.Count > 0)
+{
+	<div class="row">
 
-				</select>
+		<div class="col-12 col-md-6">
+			<form class="form-inline justify-content-center justify-content-md-start mb-sm-3 mb-md-0" action="/Index" method="get" id="formSearch">
+				<input type="text" name="q" id="q" placeholder="Nome do produto" class="form-control form-control-sm mr-sm-2" />
+				<input type="hidden" name="s" id="s" value="0" />
+				<button class="btn btn-sm btn-success my-2 my-sm-0 form-control form-control" type="submit">Buscar</button>
 			</form>
 		</div>
+		<div class="col-12 col-md-6">
+			<div class="d-flex flex-xl-row-reverse justify-content-md-start justify-content-center">
+				<form class="form-inline ml-3 d-inline-block">
+					<select class="form-control custom-select-sm" id="sequenceSelect">
+						@*<option value="0">Selecione a ordem de exibição</option>*@
+						<option value="1">Filtrar pelo nome do produto</option>
+						<option value="2">Filtrar pelo menor preço</option>
+						<option value="3">Filtrar pelo maior preço</option>
 
+					</select>
+				</form>
+			</div>
+		</div>
+	</div>
+	<hr class="mt-3" />
+	<div class="row">
 		@foreach (var product in Model.Products)
 		{
 			<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch">
@@ -41,7 +53,7 @@
 					<div class="card-footer">
 						@if (product.Stock > 0)
 						{
-							<div><a href="#" class="btn btn-primary">Adicionar ao Carrinho</a></div>
+							<div><a href="#" class="btn btn-success">Adicionar ao Carrinho</a></div>
 							<small class="text-success">Estoque: @product.Stock</small>
 						}
 						else
@@ -57,16 +69,17 @@
 				</div>
 			</div>
 		}
-	}
-	else
-	{
-		if (Request.QueryString.HasValue)
-		{<div class="col-12"><h1>Nenhum resultado encotrado para <b>@Request.Query["search"]</b>.</h1></div>}
-	else
-	{<div class="col-12"><h1>Não há produtos cadastrados.</h1></div>}
+
+	</div>
+}
+else
+{
+	if (Request.QueryString.HasValue)
+	{<div class="col-12"><h1>Nenhum resultado encotrado para <b>@Request.Query["search"]</b>.</h1></div>}
+else
+{<div class="col-12"><h1>Não há produtos cadastrados.</h1></div>}
 
 }
-</div>
 
 @section Scripts {
 	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -92,6 +105,13 @@
 			if (qs["s"] != null) {
 				$("#sequenceSelect").val(qs["s"])
 				$("#s").val(qs["s"])
+			} else {
+				$("#sequenceSelect").val(qs["1"])
+				$("#s").val(qs["1"])
+			}
+
+			if (qs["q"] != null) {
+				$("#q").val(qs["q"])
 			}
 		});
 
