@@ -62,6 +62,7 @@ namespace HortifrutiWebApp.Pages
 
             var queryCount = query;
             int productsCount = queryCount.Count();
+
             // Devolve o valor teto de um decimal
             this.QuantityPages = Convert.ToInt32(Math.Ceiling(productsCount * 1M / PageSize));
 
