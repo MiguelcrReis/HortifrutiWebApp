@@ -1,9 +1,10 @@
 ﻿using HortifrutiWebApp.Models.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace HortifrutiWebApp.Data
 {
-    public class WebAppDbContext : DbContext
+    public class WebAppDbContext : IdentityDbContext<AppUser>
     {
         public WebAppDbContext(DbContextOptions<WebAppDbContext> options)
             : base(options)
@@ -12,6 +13,8 @@ namespace HortifrutiWebApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            
             modelBuilder.Entity<OrderItem>().HasKey(x => new { x.OrderId, x.ProductId });
 
             modelBuilder.Entity<Favorite>().HasKey(x => new { x.ClientId, x.ProductId });

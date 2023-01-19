@@ -1,11 +1,14 @@
 ﻿using HortifrutiWebApp.Data;
+using HortifrutiWebApp.Models.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -23,10 +26,22 @@ namespace HortifrutiWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true; //default = false
+                options.Password.RequireNonAlphanumeric = false; //default = true
+                options.Password.RequireUppercase = false; //default = true
+                options.Password.RequireUppercase = false; //default = true
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3); //default = 3
+                options.Lockout.MaxFailedAccessAttempts = 3; //default = 5
+                options.SignIn.RequireConfirmedAccount = false; //default = true
+                options.SignIn.RequireConfirmedEmail = false; //default = true
+                options.SignIn.RequireConfirmedPhoneNumber = false; //default = true
+
+            }).AddEntityFrameworkStores<WebAppDbContext>();
+
             services.AddRazorPages();
 
-            //services.AddDbContext<WebAppDbContext>(options =>
-            //        options.UseSqlServer(Configuration.GetConnectionString("WebAppDbContext")));
             services.AddDbContext<WebAppDbContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("WebAppDbContext"), builder =>
                     builder.MigrationsAssembly("HortifrutiWebApp")));
