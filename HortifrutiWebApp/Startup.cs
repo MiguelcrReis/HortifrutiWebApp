@@ -40,6 +40,17 @@ namespace HortifrutiWebApp
 
             }).AddEntityFrameworkStores<WebAppDbContext>();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.LoginPath = "/Login";
+                options.AccessDeniedPath = "/Login";
+                options.SlidingExpiration = true;
+            });
+
+            services.AddAuthentication();
+
             services.AddRazorPages();
 
             services.AddDbContext<WebAppDbContext>(options =>
@@ -62,6 +73,8 @@ namespace HortifrutiWebApp
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
