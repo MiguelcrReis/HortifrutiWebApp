@@ -1,0 +1,40 @@
+﻿@page
+@model LoginModel
+@{
+	ViewData["Title"] = "Login";
+}
+
+<div class="row justify-content-center">
+	<form class="form-signin align-self-center" method="post" asp-page="/Login">
+		<h1 class="mt-5 mb-3 font-weight-normal">Entre com sua conta</h1>
+		<style type="text/css">
+			.val-summary ul {
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+			}
+		</style>
+
+		<div asp-validation-summary="ModelOnly" class="val-summary text-danger mb-3"></div>
+
+		<input asp-for="Data.Email" class="form-control" placeholder="Digite seu E-mail" required autofocus />
+		<span asp-validation-for="Data.Email" class="text-center"></span>
+
+		<input asp-for="Data.Password" class="form-control mt-3" placeholder="Digite sua senha" required />
+		<span asp-validation-for="Data.Password" class="text-center"></span>
+
+		<div class="custom-checkbox mt-3">
+			<label asp-for="Data.Remember">
+				<input asp-for="Data.Remember" />
+				@Html.DisplayNameFor(m => m.Data.Remember)
+			</label>
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+		<p class="mt-3">Ainda não possui cadastro? <a href="/NewClient">Cadastrar-se</a></p>
+		<p class="mt-3">Esqueceu sua senha? <a href="/RecoverPassword">Recuperar</a></p>
+	</form>
+</div>
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+}
