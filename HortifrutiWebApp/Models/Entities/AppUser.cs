@@ -4,6 +4,6 @@ namespace HortifrutiWebApp.Models.Entities
 {
     public class AppUser : IdentityUser
     {
-        public string Nome { get; set; }
+        public string Name { get; set; }
     }
 }

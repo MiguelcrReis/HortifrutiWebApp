@@ -86,7 +86,7 @@ namespace HortifrutiWebApp.Pages
                 var user = new AppUser()
                 {
                     UserName = client.Email,
-                    Nome = $"{client.Name} {client.LastName}",
+                    Name = $"{client.Name} {client.LastName}",
                     Email = client.Email,
                     PhoneNumber = client.Phone
                 };

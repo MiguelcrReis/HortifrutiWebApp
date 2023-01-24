@@ -58,7 +58,7 @@ namespace HortifrutiWebApp.Pages
             // Remove o cookie anterior para garantir um novo processo de login
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            ReturnUrl = returnUrl;
+            this.ReturnUrl = returnUrl;
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
