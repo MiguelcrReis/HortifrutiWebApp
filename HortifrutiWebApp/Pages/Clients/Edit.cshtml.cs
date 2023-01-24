@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HortifrutiWebApp.Data;
 using HortifrutiWebApp.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HortifrutiWebApp.Pages.Clients
 {
+    //[Authorize(Roles ="admin")]
+    [Authorize(Policy = "isAdmin")]
     public class EditModel : PageModel
     {
         private readonly HortifrutiWebApp.Data.WebAppDbContext _context;

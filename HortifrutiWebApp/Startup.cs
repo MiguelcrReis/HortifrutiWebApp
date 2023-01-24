@@ -49,9 +49,17 @@ namespace HortifrutiWebApp
                 options.SlidingExpiration = true;
             });
 
-            services.AddAuthentication();
+            services.AddAuthorization(options =>
+            {
+                // Politica de acesso isAdmin
+                options.AddPolicy("isAdmin", policy => policy.RequireRole("admin"));
+            });
 
-            services.AddRazorPages();
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizeAreaPage("/Admin", "isAdmin");
+                options.Conventions.AuthorizeFolder("/Products", "isAdmin");
+            });
 
             services.AddDbContext<WebAppDbContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("WebAppDbContext"), builder =>

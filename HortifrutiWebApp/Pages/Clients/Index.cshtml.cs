@@ -1,5 +1,6 @@
 using HortifrutiWebApp.Data;
 using HortifrutiWebApp.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace HortifrutiWebApp.Pages.Clients
 {
+    [Authorize(Policy = "isAdmin")]
     public class IndexModel : PageModel
     {
         private readonly WebAppDbContext _context;
