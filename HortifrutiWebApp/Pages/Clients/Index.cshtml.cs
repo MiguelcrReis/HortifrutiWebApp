@@ -1,5 +1,6 @@
 using HortifrutiWebApp.Data;
 using HortifrutiWebApp.Models.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -11,11 +12,14 @@ namespace HortifrutiWebApp.Pages.Clients
     public class IndexModel : PageModel
     {
         private readonly WebAppDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
+
         public IList<Client> Clients { get; set; }
 
-        public IndexModel(WebAppDbContext context)
+        public IndexModel(WebAppDbContext context, UserManager<AppUser> userManager)
         {
-            _context = context;
+            this._context = context;
+            this._userManager = userManager;
         }
 
         public async Task OnGetAsync()
@@ -32,7 +36,13 @@ namespace HortifrutiWebApp.Pages.Clients
             if (client != null)
             {
                 _context.Clients.Remove(client);
-                await _context.SaveChangesAsync();
+
+                if (await _context.SaveChangesAsync() > 0)
+                {
+                    AppUser user = await _userManager.FindByNameAsync(client.Email);
+
+                    if (user != null) await _userManager.DeleteAsync(user);
+                }
             }
 
             return RedirectToPage("./Index");
