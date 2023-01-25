@@ -42,6 +42,22 @@
 									<i class="fi-xnsuxl-trash-bin"></i>
 								</button>
 							</form>
+							@if (Model.EmailsAdmin.Contains(item.Email))
+							{
+								<form class="d-inline-block" asp-page-handler="removeadmin" asp-route-id="@item.ClientId" method="post">
+									<button class="btn btn-warning btn-sm" type="submit" title="Remover de administradores">
+										<i class="fi-xnsuxl-user-solid"></i>
+									</button>
+								</form>
+							}
+							else
+							{
+								<form class="d-inline-block" asp-page-handler="addadmin" asp-route-id="@item.ClientId" method="post">
+									<button class="btn btn-success btn-sm" type="submit" title="Adicionar a administradores">
+										<i class="fi-xnsuxl-user-shield-solid"></i>
+									</button>
+								</form>
+							}
 						</td>
 					</tr>
 				}

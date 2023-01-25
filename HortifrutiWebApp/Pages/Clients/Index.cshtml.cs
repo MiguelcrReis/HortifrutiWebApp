@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace HortifrutiWebApp.Pages.Clients
 {
@@ -35,13 +36,14 @@ namespace HortifrutiWebApp.Pages.Clients
         public async Task OnGetAsync()
         {
             Clients = await _context.Clients.ToListAsync();
+            EmailsAdmin = (await _userManager.GetUsersInRoleAsync("admin")).Select(x => x.Email).ToList();
         }
         #endregion
 
         #region OnPost Delete Async
         public async Task<IActionResult> OnPostDeleteAsync(int? id)
         {
-            if (id == null) { return NotFound(); }
+            if (id == null) return NotFound();
 
             var client = await _context.Clients.FindAsync(id);
 
@@ -54,6 +56,47 @@ namespace HortifrutiWebApp.Pages.Clients
                     AppUser user = await _userManager.FindByNameAsync(client.Email);
 
                     if (user != null) await _userManager.DeleteAsync(user);
+                }
+            }
+
+            return RedirectToPage("./Index");
+        }
+        #endregion
+
+        #region OnPost Remove Admin Async
+        public async Task<IActionResult> OnPostRemoveAdminAsync(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var client = await _context.Clients.FindAsync(id);
+
+            if (client != null)
+            {
+                var user = await _userManager.FindByNameAsync(client.Email);
+
+                if (user != null) await _userManager.RemoveFromRoleAsync(user, "admin");
+            }
+
+            return RedirectToPage("./Index");
+        }
+        #endregion
+
+        #region OnPost Add Admin Async
+        public async Task<IActionResult> OnPostAddAdminAsync(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var client = await _context.Clients.FindAsync(id);
+
+            if (client != null)
+            {
+                var user = await _userManager.FindByNameAsync(client.Email);
+
+                if (user != null)
+                {
+                    if (!await _roleManager.RoleExistsAsync("admin")) await _roleManager.CreateAsync(new IdentityRole("admin"));
+
+                    await _userManager.AddToRoleAsync(user, "admin");
                 }
             }
 
