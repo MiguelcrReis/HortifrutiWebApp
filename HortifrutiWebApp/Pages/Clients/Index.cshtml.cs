@@ -13,22 +13,32 @@ namespace HortifrutiWebApp.Pages.Clients
     [Authorize(Policy = "isAdmin")]
     public class IndexModel : PageModel
     {
+        #region Dependency Injection
         private readonly WebAppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public IList<Client> Clients { get; set; }
-
-        public IndexModel(WebAppDbContext context, UserManager<AppUser> userManager)
+        public IndexModel(WebAppDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             this._context = context;
             this._userManager = userManager;
+            this._roleManager = roleManager;
         }
+        #endregion
 
+        #region Variables
+        public IList<Client> Clients { get; set; }
+        public IList<string> EmailsAdmin { get; set; }
+        #endregion
+
+        #region OnGet Async
         public async Task OnGetAsync()
         {
             Clients = await _context.Clients.ToListAsync();
         }
+        #endregion
 
+        #region OnPost Delete Async
         public async Task<IActionResult> OnPostDeleteAsync(int? id)
         {
             if (id == null) { return NotFound(); }
@@ -49,5 +59,6 @@ namespace HortifrutiWebApp.Pages.Clients
 
             return RedirectToPage("./Index");
         }
+        #endregion
     }
 }
