@@ -2,6 +2,7 @@
 using HortifrutiWebApp.Models.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,13 @@ namespace HortifrutiWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // Habilita a necessidade de consentimento para uso de cookie
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true; //default = false
@@ -62,6 +70,9 @@ namespace HortifrutiWebApp
             {
                 options.Conventions.AuthorizePage("/Admin", "isAdmin");
                 options.Conventions.AuthorizeFolder("/Products", "isAdmin");
+            }).AddCookieTempDataProvider(options =>
+            {
+                options.Cookie.IsEssential = true;
             });
 
             services.AddDbContext<WebAppDbContext>(options =>
@@ -84,6 +95,8 @@ namespace HortifrutiWebApp
             }
 
             app.UseStaticFiles();
+
+            app.UseCookiePolicy();
 
             app.UseRouting();
 
