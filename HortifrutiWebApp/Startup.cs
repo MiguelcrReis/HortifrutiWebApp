@@ -16,13 +16,16 @@ namespace HortifrutiWebApp
 {
     public class Startup
     {
+        #region Dependency Injection
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
+        #endregion
 
+        #region Configure Services
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -65,7 +68,9 @@ namespace HortifrutiWebApp
                     options.UseMySql(Configuration.GetConnectionString("WebAppDbContext"), builder =>
                     builder.MigrationsAssembly("HortifrutiWebApp")));
         }
+        #endregion
 
+        #region Configure
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -101,5 +106,6 @@ namespace HortifrutiWebApp
 
             app.UseRequestLocalization(localizationOptions);
         }
+        #endregion
     }
 }
