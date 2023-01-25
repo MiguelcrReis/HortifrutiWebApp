@@ -51,7 +51,7 @@ namespace HortifrutiWebApp.Pages
                 ModelState.AddModelError(string.Empty, ErrorMesage);
             }
 
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl ??= Url.Content("~/");
 
             // Remove o cookie anterior para garantir um novo processo de login
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
@@ -61,7 +61,7 @@ namespace HortifrutiWebApp.Pages
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl ??= Url.Content("~/");
 
             if (ModelState.IsValid)
             {
