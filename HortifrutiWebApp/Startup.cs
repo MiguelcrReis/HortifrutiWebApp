@@ -57,7 +57,7 @@ namespace HortifrutiWebApp
 
             services.AddRazorPages(options =>
             {
-                options.Conventions.AuthorizeAreaPage("/Admin", "isAdmin");
+                options.Conventions.AuthorizePage("/Admin", "isAdmin");
                 options.Conventions.AuthorizeFolder("/Products", "isAdmin");
             });
 
