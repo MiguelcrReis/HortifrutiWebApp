@@ -1,5 +1,7 @@
 ﻿using HortifrutiWebApp.Data;
+using HortifrutiWebApp.Entities;
 using HortifrutiWebApp.Models.Entities;
+using HortifrutiWebApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,13 +32,16 @@ namespace HortifrutiWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Configure Cookie Policy
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // Habilita a necessidade de consentimento para uso de cookie
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            #endregion
 
+            #region Add Identity User
             services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true; //default = false
@@ -49,8 +54,11 @@ namespace HortifrutiWebApp
                 options.SignIn.RequireConfirmedEmail = false; //default = true
                 options.SignIn.RequireConfirmedPhoneNumber = false; //default = true
 
-            }).AddEntityFrameworkStores<WebAppDbContext>();
+            }).AddEntityFrameworkStores<WebAppDbContext>()
+              .AddDefaultTokenProviders();
+            #endregion
 
+            #region Configure Application Cookie
             services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.HttpOnly = true;
@@ -59,13 +67,17 @@ namespace HortifrutiWebApp
                 options.AccessDeniedPath = "/Login";
                 options.SlidingExpiration = true;
             });
+            #endregion
 
+            #region Add Authorization
             services.AddAuthorization(options =>
             {
                 // Politica de acesso isAdmin
                 options.AddPolicy("isAdmin", policy => policy.RequireRole("admin"));
             });
+            #endregion
 
+            #region Add Razor Pages
             services.AddRazorPages(options =>
             {
                 options.Conventions.AuthorizePage("/Admin", "isAdmin");
@@ -74,10 +86,18 @@ namespace HortifrutiWebApp
             {
                 options.Cookie.IsEssential = true;
             });
+            #endregion
 
+            #region Add DB Context
             services.AddDbContext<WebAppDbContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("WebAppDbContext"), builder =>
                     builder.MigrationsAssembly("HortifrutiWebApp")));
+            #endregion
+
+            #region Configure Email
+            services.Configure<EmailConfiguration>(Configuration.GetSection("EmailConfiguration"));
+            services.AddSingleton<IEmailSender, EmailSender>();
+            #endregion
         }
         #endregion
 
