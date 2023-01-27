@@ -10,7 +10,7 @@
 	@if (SignInManager.IsSignedIn(User))
 	{
 		<li class="nav-item">
-			<a id="manage" class="nav-link text-dark" asp-area="" asp-page="/Index" title="Manage">Olá, @appUser.Name.Substring(0, appUser.Name.IndexOf(' '))!</a>
+			<a id="manage" class="nav-link active" asp-area="" asp-page="/Index" title="Manage">Olá, @appUser.Name.Substring(0, appUser.Name.IndexOf(' '))!</a>
 		</li>
 		<li class="nav-item">
 			<form id="logoutForm" class="form-inline" asp-area="" asp-page="/Login" asp-page-handler="logout"
@@ -22,10 +22,10 @@
 	else
 	{
 		<li class="nav-item">
-			<a class="nav-link text-dark" id="register" asp-area="" asp-page="/NewClient">Cadastrar</a>
+			<a class="nav-link active font-weight-bold" id="register" style="color: #0366d6; font-size:16px" asp-area="" asp-page="/NewClient">Cadastrar</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link text-dark" id="login" asp-area="" asp-page="/Login">Entrar</a>
+			<a class="nav-link active font-weight-bold" id="login" style="color: #0366d6; font-size: 16px " asp-area="" asp-page="/Login">Entrar</a>
 		</li>
 	}
 </ul>
