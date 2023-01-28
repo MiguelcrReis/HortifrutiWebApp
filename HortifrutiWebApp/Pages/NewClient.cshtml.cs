@@ -1,14 +1,15 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
+using System.Text;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using HortifrutiWebApp.Data;
 using HortifrutiWebApp.Models.Entities;
 using HortifrutiWebApp.Models.Enums;
+using HortifrutiWebApp.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace HortifrutiWebApp.Pages
 {
@@ -19,12 +20,14 @@ namespace HortifrutiWebApp.Pages
         private UserManager<AppUser> _userManager;
         // Gerenciamento de Perfis
         private RoleManager<IdentityRole> _roleManager;
+        private readonly IEmailSender _emailSender;
 
-        public NewClientModel(WebAppDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
+        public NewClientModel(WebAppDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IEmailSender emailSender)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+            _emailSender = emailSender;
         }
 
         #region Passwords
@@ -107,6 +110,15 @@ namespace HortifrutiWebApp.Pages
                     // Se salvou o client no BD
                     if (affected > 0)
                     {
+                        var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+                        var urlConfirmationEmail = Url.Page("/ConfirmationEmail", null, new { userId = user.Id, token }, Request.Scheme);
+                        StringBuilder message = new StringBuilder();
+                        message.Append("<h1>HortiFruti Reis :: Confirmação de E-mail</h1>");
+                        message.Append($"<p>Por gentileza, <a href='{HtmlEncoder.Default.Encode(urlConfirmationEmail)}'>clique aqui</a> para fazer a confirmação do seu E-mail</p>");
+                        message.Append("<p>Atenciosamente, <br>Equipe HortiFruti Reis</p>");
+                        await _emailSender.SendEmailAsync(user.Email, "Confirmação de E-mail", "", message.ToString());
+
                         return RedirectToPage("/RegistrationDone");
                     }
                     else

@@ -1,0 +1,27 @@
+﻿@page
+@model HortifrutiWebApp.Pages.ConfirmationEmailModel
+@{
+	ViewData["Title"] = Model.StatusMessage;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+	<b>@Model.StatusMessage</b>
+	@if (Model.ConfirmationEmail)
+	{
+		<span>Para fazer login agora, <a href="/Login">Clique aqui</a>.</span>
+	}
+	else
+	{
+		<span>Entre em contato com o nosso suporte para obter maiores detalhes.</span>
+	}
+</p>
+
+@if (Model.ConfirmationEmail)
+{
+	<p>
+		<a class="btn btn-outline-success" href="/Login">Clique aqui para fazer Login!</a>
+	</p>
+}
+

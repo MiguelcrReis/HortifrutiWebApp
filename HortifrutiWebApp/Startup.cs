@@ -51,7 +51,7 @@ namespace HortifrutiWebApp
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3); //default = 3
                 options.Lockout.MaxFailedAccessAttempts = 3; //default = 5
                 options.SignIn.RequireConfirmedAccount = false; //default = true
-                options.SignIn.RequireConfirmedEmail = false; //default = true
+                options.SignIn.RequireConfirmedEmail = true; //default = true
                 options.SignIn.RequireConfirmedPhoneNumber = false; //default = true
 
             }).AddEntityFrameworkStores<WebAppDbContext>()
