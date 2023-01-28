@@ -8,6 +8,6 @@ namespace HortifrutiWebApp.Entities
         public string Password { get; set; }
         public string ServerAddressEmail { get; set; }
         public string ServerPortEmail { get; set; }
-        public bool UserSSL { get; set; }
+        public bool UseSSL { get; set; }
     }
 }
