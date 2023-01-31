@@ -32,13 +32,14 @@ namespace HortifrutiWebApp.Services
 
             try
             {
-                var smtpClient = new SmtpClient();
-                smtpClient.ServerCertificateValidationCallback = (s, c, h, e) => true;
-                await smtpClient.ConnectAsync(_emailConfiguration.ServerAddressEmail).ConfigureAwait(false);
-                // Caso o servidor requer autenticação para enviar
-                await smtpClient.AuthenticateAsync(_emailConfiguration.SenderEmail, _emailConfiguration.Password).ConfigureAwait(false);
-                await smtpClient.SendAsync(message).ConfigureAwait(false);
-                await smtpClient.DisconnectAsync(true).ConfigureAwait(false);
+                var smtp = new SmtpClient();
+
+                smtp.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+                await smtp.ConnectAsync(_emailConfiguration.ServerAddressEmail, _emailConfiguration.ServerPortEmail).ConfigureAwait(false);
+                await smtp.AuthenticateAsync(_emailConfiguration.SenderEmail, _emailConfiguration.Password).ConfigureAwait(false);
+                await smtp.SendAsync(message).ConfigureAwait(false);
+                await smtp.DisconnectAsync(true).ConfigureAwait(false);
             }
             catch (Exception ex) { throw new InvalidOperationException(ex.Message); }
         }
