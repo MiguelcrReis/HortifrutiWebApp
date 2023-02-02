@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace HortifrutiWebApp.Models.Entities
 {
@@ -15,10 +12,10 @@ namespace HortifrutiWebApp.Models.Entities
         [Required]
         public int ProductId { get; set; }
 
-        [Required(ErrorMessage = "{0} obrigatório")]
+        [Required(ErrorMessage = "\"{0}\" é obrigatório!")]
         public float Quantity { get; set; }
 
-        [Required(ErrorMessage = "{0} obrigatório")]
+        [Required(ErrorMessage = "\"{0}\" é obrigatório!")]
         [Column(TypeName = "decimal(18,2)")]
         [Display(Name = "Unitary value")]
         public decimal UnitaryValue { get; set; }

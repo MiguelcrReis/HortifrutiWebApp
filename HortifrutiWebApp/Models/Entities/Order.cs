@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HortifrutiWebApp.Models.Entities
 {
@@ -15,15 +13,15 @@ namespace HortifrutiWebApp.Models.Entities
         [Display(Name = "Code")]
         public int OrderId { get; set; }
 
-        [Required(ErrorMessage = "{0} obrigatório")]
+        [Required(ErrorMessage = "\"{0}\" é obrigatório!")]
         [Display(Name = "Data/Hora")]
         public DateTime DateTimeOrder { get; set; }
 
-        [Required(ErrorMessage = "{0} obrigatório")]
+        [Required(ErrorMessage = "\"{0}\" é obrigatório!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        [Required(ErrorMessage = "{0} obrigatório")]
+        [Required(ErrorMessage = "\"{0}\" é obrigatório!")]
         [DisplayName("Order status")]
         public OrderStatus OrderStatus { get; set; }
 

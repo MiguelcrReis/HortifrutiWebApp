@@ -34,7 +34,7 @@ namespace HortifrutiWebApp.Pages
         public class Passwords
         {
             [Required(ErrorMessage = "\"{0}\" obrigatório.")]
-            [StringLength(16, MinimumLength = 6, ErrorMessage = "A \"{0}\" deve conter pelo menos {2} e no máximo {1} caracteres.")]
+            [StringLength(16, MinimumLength = 6, ErrorMessage = "A \"{0}\" deve conter pelo menos \"{2}\" e no máximo  \"{1}\" caracteres.")]
             [DataType(DataType.Password)]
             [Display(Name = "Senha")]
             public string Password { get; set; }

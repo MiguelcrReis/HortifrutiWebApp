@@ -22,7 +22,7 @@ namespace HortifrutiWebApp.Pages.Products
 
         [BindProperty]
         [Display(Name = "Image Product")]
-        [Required(ErrorMessage = "{0} obrigatório")]
+        [Required(ErrorMessage = "\"{0}\" é obrigatório!")]
         public IFormFile ImageProduct { get; set; }
 
         public CreateModel(WebAppDbContext context, IWebHostEnvironment webHostEnvironment)
