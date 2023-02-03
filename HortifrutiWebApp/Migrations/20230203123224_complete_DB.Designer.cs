@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HortifrutiWebApp.Migrations
 {
     [DbContext(typeof(WebAppDbContext))]
-    [Migration("20230121014445_CreateIdentitySchema")]
-    partial class CreateIdentitySchema
+    [Migration("20230203123224_complete_DB")]
+    partial class complete_DB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,7 +44,7 @@ namespace HortifrutiWebApp.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("NormalizedEmail")
@@ -438,7 +438,7 @@ namespace HortifrutiWebApp.Migrations
                     b.HasOne("HortifrutiWebApp.Models.Entities.Client", "Client")
                         .WithMany("Orders")
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.OwnsOne("HortifrutiWebApp.Models.Entities.Address", "Address", b1 =>
@@ -504,7 +504,7 @@ namespace HortifrutiWebApp.Migrations
                     b.HasOne("HortifrutiWebApp.Models.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

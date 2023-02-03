@@ -14,12 +14,35 @@ namespace HortifrutiWebApp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
+
             modelBuilder.Entity<OrderItem>().HasKey(x => new { x.OrderId, x.ProductId });
 
             modelBuilder.Entity<Favorite>().HasKey(x => new { x.ClientId, x.ProductId });
 
             modelBuilder.Entity<Visit>().HasKey(x => new { x.ClientId, x.ProductId });
+
+            // Restrições
+
+            //Restringe a exclusão de clientes  que possuam  pedidos
+            modelBuilder.Entity<Order>()
+                .HasOne<Client>(o => o.Client)
+                .WithMany(c => c.Orders)
+                .HasForeignKey(o => o.ClientId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Exclui automaticamente os itens de um pedido quando um pedido é excluido
+            modelBuilder.Entity<OrderItem>()
+                .HasOne<Order>(oi => oi.Order)
+                .WithMany(o => o.OrderItems)
+                .HasForeignKey(o => o.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Restringe a exclusão de produtos que possuem itens de pedidos
+            modelBuilder.Entity<OrderItem>()
+                .HasOne<Product>(oi => oi.Product)
+                .WithMany()
+                .HasForeignKey(o => o.ProductId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         public DbSet<Product> Products { get; set; }

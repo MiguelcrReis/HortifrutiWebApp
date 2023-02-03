@@ -436,7 +436,7 @@ namespace HortifrutiWebApp.Migrations
                     b.HasOne("HortifrutiWebApp.Models.Entities.Client", "Client")
                         .WithMany("Orders")
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.OwnsOne("HortifrutiWebApp.Models.Entities.Address", "Address", b1 =>
@@ -502,7 +502,7 @@ namespace HortifrutiWebApp.Migrations
                     b.HasOne("HortifrutiWebApp.Models.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
