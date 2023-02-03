@@ -10,7 +10,7 @@ namespace HortifrutiWebApp.Models.Entities
     public class Order
     {
         [Key]
-        [Display(Name = "Code")]
+        [Display(Name = "Código")]
         public int OrderId { get; set; }
 
         [Required(ErrorMessage = "\"{0}\" é obrigatório!")]
@@ -19,6 +19,7 @@ namespace HortifrutiWebApp.Models.Entities
 
         [Required(ErrorMessage = "\"{0}\" é obrigatório!")]
         [Column(TypeName = "decimal(18,2)")]
+        [Display(Name = "Valor Total")]
         public decimal Amount { get; set; }
 
         [Required(ErrorMessage = "\"{0}\" é obrigatório!")]

@@ -7,6 +7,7 @@ namespace HortifrutiWebApp.Models.Enums
 {
     public enum OrderStatus
     {
+        ShoppingCart,
         Canceled,
         Realized,
         Verified,
