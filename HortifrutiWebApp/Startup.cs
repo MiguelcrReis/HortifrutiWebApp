@@ -88,6 +88,10 @@ namespace HortifrutiWebApp
             });
             #endregion
 
+            #region Add MVC
+            services.AddMvc();
+            #endregion
+
             #region Add DB Context
             services.AddDbContext<WebAppDbContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("WebAppDbContext"), builder =>
@@ -127,6 +131,7 @@ namespace HortifrutiWebApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
 
             var defaultCulture = new CultureInfo("pt-BR");
