@@ -1,0 +1,76 @@
+﻿@page
+@model HortifrutiWebApp.Pages.ShoppingCartModel
+@{
+	ViewData["Title"] = "Carrinho de Compras";
+}
+
+<div class="card">
+	<div class="card-header bg-danger text-light">
+		<div class="row">
+			<div class="col-8">
+				<h4 class="m-0">
+					<i class="fi-xwsuhl-shopping-cart-wide" aria-hidden="true"></i>
+					@ViewData["Title"]
+				</h4>
+			</div>
+			<div class="col-4 text-right">
+				<a aps-page="/Index" class="btn btn-outline-light btn-sm pull-right">Continuar Comprando</a>
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+		@if ((Model.Order != null) && (Model.Order.OrderItems.Count > 0))
+		{
+			@foreach (var item in Model.Order.OrderItems)
+			{
+				var imageFilePath = System.IO.Path.Combine(
+					"img\\product", item.OrderId.ToString("D6") + "jpg");
+
+				<div class="row" id="@($"divItem{item.ProductId}"))">
+					<div class="col-sm-3 col-md-2 text-center mb-2 mb-sm-0">
+						<img class="img-thumbnail" src="@imageFilePath" />
+					</div>
+					<div class="col-sm-9 col-md-4 col-lg-5 text-left">
+						<h4 class="product-name"><strong>@item.Product.Name</strong></h4>
+						<h4><small>@item.Product.Descrition</small></h4>
+					</div>
+					<div class="col-sm-12 col-md-6 col-lg-5">
+						<div class="row">
+							<div class="col-4 text-md-right pt-2 text-right">
+								<h6>
+									<strong id="@($"ValorUnit{item.ProductId}")">R$@item.UnitaryValue.ToString("F2")</strong><b><span class="text-muted">x</span></b>
+								</h6>
+							</div>
+							<div class="col-5">
+								<div name="@item.ProductId">
+									<input type="number" step="1" max="99" min="1" value="@item.Quantity" title="Quantidade" class="border-dark px-1 input-spinner" name="@item.ProductId" />
+								</div>
+							</div>
+							<div class="col-3 text-right">
+								<button type="button" class="btn btn-outline-danger btn-xs btn-del" name="@item.ProductId">
+									<i class="fi-xnsuxl-trash-bin"></i>
+								</button>
+							</div>
+							<div class="col-9 mr-auto text-right mt-1 text-muted">
+								<b id="@($"itemValue{item.ProductId}")">R$ @item.ItemValue.ToString("F2")</b>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr id="@($"sepItem{item.ProductId}")">
+			}
+		}
+		else
+		{
+			<h3>Seu carrinho de compras está vazio.</h3>
+		}
+	</div>
+	<div class="card-footer text-right">
+		<div class="pull-right">
+			<div class="pull-right mb-2">
+				Valor Total: <b id="valorPedido">R$ @(Model.Amount.ToString("F2"))</b>
+			</div>
+			<a href="/ConfirmOrder"></a>
+		</div>
+	</div>
+</div>
