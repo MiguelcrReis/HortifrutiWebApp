@@ -26,7 +26,9 @@ namespace HortifrutiWebApp.Models.Entities
         [DisplayName("Order status")]
         public OrderStatus OrderStatus { get; set; }
 
-        public int ClientId { get; set;  }
+        public int ClientId { get; set; }
+
+        public string CartId { get; set; }
 
         [ForeignKey("ClientId")]
         public Client Client { get; set; }
