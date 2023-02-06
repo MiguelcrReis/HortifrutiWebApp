@@ -67,8 +67,9 @@
 					<div class="card-footer">
 						@if (product.Stock > 0)
 						{
-							<div><a href="#" class="btn btn-success">Adicionar ao Carrinho</a></div>
-							<small class="text-success">Estoque: @product.Stock</small>
+							<form class="d-inline-block" asp-page="/ShoppingCart" asp-page-handler="AddToCart" asp-route-id="@product.ProductId" method="post">
+								<button type="submit" class="btn btn-danger">Adicionar ao Carrinho</button>
+							</form>
 						}
 						else
 						{

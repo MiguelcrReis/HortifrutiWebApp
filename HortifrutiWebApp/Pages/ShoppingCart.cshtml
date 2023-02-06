@@ -70,7 +70,35 @@
 			<div class="pull-right mb-2">
 				Valor Total: <b id="valorPedido">R$ @(Model.Amount.ToString("F2"))</b>
 			</div>
-			<a href="/ConfirmOrder"></a>
+			<a href="/ConfirmOrder" class="btn btn-success pull-right">Fechar Pedido</a>
 		</div>
 	</div>
 </div>
+
+@section Scripts{
+	<script src="~/lib/bootstrap-input-spinner.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+	<script>
+		$("input[type='number']").inputSpinner();
+		$(".input-spinner").change(function () {
+			var qtd = $(this).val();
+			var prod = $(this).attr("name");
+
+			$.post("/api/ShoppingCartApi/UpdateCarItem",
+				{
+					idCart: Cookies.get(@Model.COOKIE_NAME),
+					idProduct: prod,
+					quantity: qtd
+				},
+				function (data, status) {
+					if (status == "success") {
+						if (!data) return;
+						$("#valorPedido").text(data.v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+						var idValorItem = "#valorItem" + data.item.id;
+						$(idValorItem).text(data.item.v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+					}
+				}
+			);
+		});
+	</script>
+}
