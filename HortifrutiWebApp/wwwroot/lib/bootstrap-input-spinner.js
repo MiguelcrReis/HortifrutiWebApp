@@ -34,7 +34,7 @@
             decrementButton: "<strong>&minus;</strong>", // button text
             incrementButton: "<strong>&plus;</strong>", // ..
             groupClass: "", // css class of the resulting input-group
-            buttonsClass: "btn-outline-secondary",
+            buttonsClass: "btn-secondary",
             buttonsWidth: "2.5rem",
             textAlign: "center",
             autoDelay: 500, // ms holding before auto value change
