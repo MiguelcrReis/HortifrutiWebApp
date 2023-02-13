@@ -23,8 +23,7 @@
 		{
 			@foreach (var item in Model.Order.OrderItems)
 			{
-				var imageFilePath = System.IO.Path.Combine(
-					"img\\product", item.OrderId.ToString("D6") + "jpg");
+				var imageFilePath = System.IO.Path.Combine("/img/product/", item.ProductId.ToString("D6") + ".jpg");
 
 				<div class="row" id="@($"divItem{item.ProductId}"))">
 					<div class="col-sm-3 col-md-2 text-center mb-2 mb-sm-0">
@@ -38,12 +37,12 @@
 						<div class="row">
 							<div class="col-4 text-md-right pt-2 text-right">
 								<h6>
-									<strong id="@($"ValorUnit{item.ProductId}")">R$@item.UnitaryValue.ToString("F2")</strong><b><span class="text-muted">x</span></b>
+									<strong id="@($"ValorUnit{item.ProductId}")">R$@item.UnitaryValue.ToString("F2")</strong><b><span class="text-muted"> x</span></b>
 								</h6>
 							</div>
 							<div class="col-5">
 								<div name="@item.ProductId">
-									<input type="number" step="1" max="99" min="1" value="@item.Quantity" title="Quantidade" class="border-dark px-1 input-spinner" name="@item.ProductId" />
+									<input type="number" step="1" max="99" min="1" value="@item.Quantity" title="Quantidade" class="px-1 input-spinner" name="@item.ProductId" />
 								</div>
 							</div>
 							<div class="col-3 text-right">
@@ -86,7 +85,7 @@
 
 			$.post("/api/ShoppingCartApi/UpdateCarItem",
 				{
-					idCart: Cookies.get(@Model.COOKIE_NAME),
+					idCart: Cookies.get("@Model.COOKIE_NAME"),
 					idProduct: prod,
 					quantity: qtd
 				},

@@ -112,7 +112,7 @@ namespace HortifrutiWebApp.Pages
                 {
                     Order.OrderItems.Add(new OrderItem
                     {
-                        OrderId = id.Value,
+                        ProductId = id.Value,
                         Quantity = qtd,
                         UnitaryValue = product.Price.Value
                     });
