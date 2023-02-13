@@ -22,6 +22,7 @@ namespace HortifrutiWebApp.Models.Entities
         public decimal UnitaryValue { get; set; }
 
         [NotMapped]
+        [Display(Name = "Valor do Item")]
         public decimal ItemValue
         {
             get
