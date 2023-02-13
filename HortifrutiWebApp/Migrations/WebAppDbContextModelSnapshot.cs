@@ -153,7 +153,7 @@ namespace HortifrutiWebApp.Migrations
                     b.Property<string>("CartId")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("ClientId")
+                    b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateTimeOrder")
@@ -439,8 +439,7 @@ namespace HortifrutiWebApp.Migrations
                     b.HasOne("HortifrutiWebApp.Models.Entities.Client", "Client")
                         .WithMany("Orders")
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.OwnsOne("HortifrutiWebApp.Models.Entities.Address", "Address", b1 =>
                         {

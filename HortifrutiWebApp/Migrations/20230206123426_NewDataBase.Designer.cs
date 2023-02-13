@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HortifrutiWebApp.Migrations
 {
     [DbContext(typeof(WebAppDbContext))]
-    [Migration("20230203123224_complete_DB")]
-    partial class complete_DB
+    [Migration("20230206123426_NewDataBase")]
+    partial class NewDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,7 +152,10 @@ namespace HortifrutiWebApp.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ClientId")
+                    b.Property<string>("CartId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateTimeOrder")
@@ -438,8 +441,7 @@ namespace HortifrutiWebApp.Migrations
                     b.HasOne("HortifrutiWebApp.Models.Entities.Client", "Client")
                         .WithMany("Orders")
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.OwnsOne("HortifrutiWebApp.Models.Entities.Address", "Address", b1 =>
                         {

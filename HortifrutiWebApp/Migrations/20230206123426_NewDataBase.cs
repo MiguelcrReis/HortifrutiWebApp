@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HortifrutiWebApp.Migrations
 {
-    public partial class complete_DB : Migration
+    public partial class NewDataBase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -206,7 +206,8 @@ namespace HortifrutiWebApp.Migrations
                     DateTimeOrder = table.Column<DateTime>(nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     OrderStatus = table.Column<int>(nullable: false),
-                    ClientId = table.Column<int>(nullable: false),
+                    ClientId = table.Column<int>(nullable: true),
+                    CartId = table.Column<string>(nullable: true),
                     Address_Cep = table.Column<string>(maxLength: 8, nullable: true),
                     Address_Number = table.Column<string>(maxLength: 10, nullable: true),
                     Address_Street = table.Column<string>(maxLength: 100, nullable: true),
