@@ -20,7 +20,7 @@
 					<th>@Html.DisplayNameFor(model => model.Products[0].Name)</th>
 					<th>@Html.DisplayNameFor(model => model.Products[0].Descrition)</th>
 					<th>@Html.DisplayNameFor(model => model.Products[0].Price)</th>
-					<th>@Html.DisplayNameFor(model => model.Products[0].Stock)</th>
+					<th class="d-none d-lg-table-cell">@Html.DisplayNameFor(model => model.Products[0].Stock)</th>
 					<th class="text-center">Ações</th>
 				</tr>
 			</thead>
@@ -31,13 +31,13 @@
 						<td>@Html.DisplayFor(modelItem => item.Name)</td>
 						<td>@Html.DisplayFor(modelItem => item.Descrition)</td>
 						<td>@Html.DisplayFor(modelItem => item.Price)</td>
-						<td>@Html.DisplayFor(modelItem => item.Stock)</td>
+						<td class="d-none d-lg-table-cell">@Html.DisplayFor(modelItem => item.Stock)</td>
 						<td class="text-center">
-							<a class="btn btn-primary btn-sm" asP-page="Edit" asp-route-id="@item.ProductId">Alterar</a>
+							<a class="btn btn-primary btn-sm" asP-page="Edit" asp-route-id="@item.ProductId"><i class="fi-xnsuxl-edit-solid"></i></a>
 							<form class="d-inline-block" asp-page-handler="delete" asp-route-id="@item.ProductId"
 								  method="post">
 								<button class="btn btn-danger btn-sm" onclick="confirmDelete(this);" type="button">
-									Excluir
+									<i class="fi-xnsuxl-trash-bin"></i>
 								</button>
 							</form>
 						</td>

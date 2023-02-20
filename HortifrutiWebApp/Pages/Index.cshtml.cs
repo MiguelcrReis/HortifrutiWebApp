@@ -39,7 +39,7 @@ namespace HortifrutiWebApp.Pages
             if (!string.IsNullOrEmpty(search))
             {
                 query = query.Where(
-                    p => p.Name.ToUpper().Contains(search.ToUpper())).OrderBy(p => p.Name);
+                    p => p.Name.ToLower().Contains(search.ToLower())).OrderBy(p => p.Name);
             }
 
             if (sequence.HasValue)
@@ -47,7 +47,7 @@ namespace HortifrutiWebApp.Pages
                 switch (sequence.Value)
                 {
                     case 1:
-                        query = query.OrderBy(p => p.Name.ToUpper());
+                        query = query.OrderBy(p => p.Name.ToLower());
                         break;
                     case 2:
                         query = query.OrderBy(p => p.Price);

@@ -24,7 +24,7 @@
 		<div class="col-12 col-md-6">
 			<div class="d-flex flex-xl-row-reverse justify-content-md-start justify-content-center">
 				<form class="form-inline ml-3 d-inline-block">
-					<select class="form-control custom-select-sm sequenceSelect" @*id="sequenceSelect"*@>
+					<select class="form-control custom-select-sm sequenceSelect" @(Model.Products.Count <= 1 ? "disable" : "") @*id="sequenceSelect"*@>
 						@*<option value="0">Selecione a ordem de exibição</option>*@
 						<option value="1">Filtrar pelo nome do produto</option>
 						<option value="2">Filtrar pelo menor preço</option>
@@ -148,7 +148,7 @@ else
 			}
 
 			if (qs["q"] != null) {
-				$("#q").val(qs["q"])
+				$("#q").val(decodeURI(qs["q"]))
 			}
 		});
 
