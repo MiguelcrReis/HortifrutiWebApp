@@ -14,7 +14,7 @@
 				</h4>
 			</div>
 			<div class="col-4 text-right">
-				<a aps-page="/Index" class="btn btn-outline-light btn-sm pull-right">Continuar Comprando</a>
+				<a asp-page="/Index" class="btn btn-outline-light btn-sm pull-right">Continuar Comprando</a>
 			</div>
 		</div>
 	</div>
@@ -25,7 +25,7 @@
 			{
 				var imageFilePath = System.IO.Path.Combine("/img/product/", item.ProductId.ToString("D6") + ".jpg");
 
-				<div class="row" id="@($"divItem{item.ProductId}"))">
+				<div class="row" id="@($"divItem{item.ProductId}")">
 					<div class="col-sm-3 col-md-2 text-center mb-2 mb-sm-0">
 						<img class="img-thumbnail" src="@imageFilePath" />
 					</div>
@@ -37,12 +37,13 @@
 						<div class="row">
 							<div class="col-4 text-md-right pt-2 text-right">
 								<h6>
-									<strong id="@($"ValorUnit{item.ProductId}")">R$@item.UnitaryValue.ToString("F2")</strong><b><span class="text-muted"> x</span></b>
+									<strong id="@($"valorUnit{item.ProductId}")">R$ @item.UnitaryValue.ToString("F2")</strong><b><span class="text-muted"> x</span></b>
 								</h6>
 							</div>
 							<div class="col-5">
 								<div name="@item.ProductId">
-									<input type="number" step="1" max="99" min="1" value="@item.Quantity" title="Quantidade" class="px-1 input-spinner" name="@item.ProductId" />
+									<input type="number" step="1" max="99" min="1" value="@item.Quantity" title="Quantidade"
+										   class="px-1 input-spinner" name="@item.ProductId" />
 								</div>
 							</div>
 							<div class="col-3 text-right">
@@ -67,10 +68,13 @@
 	<div class="card-footer text-right">
 		<div class="pull-right">
 			<div class="pull-right mb-2">
-				Valor Total: <b id="valorPedido">R$ @(Model.Amount.ToString("F2"))</b>
+				Valor Total: <b id="amount">R$ @(Model.Amount.ToString("F2"))</b>
 			</div>
-			<a href="/ConfirmOrder" class="btn btn-success pull-right">Fechar Pedido</a>
 		</div>
+		@if (Model.Order?.OrderItems?.Count > 0)
+		{
+			<a asp-page="/ConfirmarPedido" class="btn btn-success pull-right">Fechar Pedido</a>
+		}
 	</div>
 </div>
 
@@ -80,21 +84,41 @@
 	<script>
 		$("input[type='number']").inputSpinner();
 		$(".input-spinner").change(function () {
-			var qtd = $(this).val();
+			var qtde = $(this).val();
 			var prod = $(this).attr("name");
 
-			$.post("/api/ShoppingCartApi/UpdateCarItem",
+			$.post("/api/ShoppingCartAPI/UpdateCartItem",
 				{
-					idCart: Cookies.get("@Model.COOKIE_NAME"),
-					idProduct: prod,
-					quantity: qtd
+					cartId: Cookies.get("@Model.COOKIE_NAME"),
+					productId: prod,
+					quantity: qtde
 				},
 				function (data, status) {
 					if (status == "success") {
 						if (!data) return;
-						$("#valorPedido").text(data.v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
-						var idValorItem = "#valorItem" + data.item.id;
+						$("#amount").text(data.v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+						var idValorItem = "#itemValue" + data.item.id;
 						$(idValorItem).text(data.item.v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+					}
+				}
+			);
+		});
+
+		$(".btn-del").click(function () {
+			var prod = $(this).attr("name");
+
+			$.post("/api/ShoppingCartAPI/DeleteCartItem",
+				{
+					cartId: Cookies.get("@Model.COOKIE_NAME"),
+					productId: prod
+				},
+				function (data, status) {
+					if (status == "success") {
+						if (!data) return;
+						$("#amount").text(data.v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+						$("#divItem" + data.id).remove();
+						$("#sepItem" + data.id).remove();
+						if ($(".btn-del").length == 0) window.location.pathname = "/ShoppingCart";
 					}
 				}
 			);

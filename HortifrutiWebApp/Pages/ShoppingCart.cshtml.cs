@@ -14,9 +14,9 @@ namespace HortifrutiWebApp.Pages
 {
     public class ShoppingCartModel : PageModel
     {
-        private WebAppDbContext _context;
-        private SignInManager<AppUser> _signInManager;
-        private UserManager<AppUser> _userManager;
+        private readonly WebAppDbContext _context;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
         public string COOKIE_NAME { get { return ".AspNetCore.CartId"; } }
 
         public Order Order { get; set; }
@@ -34,13 +34,28 @@ namespace HortifrutiWebApp.Pages
             if (Request.Cookies.ContainsKey(COOKIE_NAME))
             {
                 var cartId = Request.Cookies[COOKIE_NAME];
-                Order = await _context.Orders.Include("OrderItems").Include("OrderItems.Product").FirstOrDefaultAsync(p => p.CartId == cartId);
+                Order = await _context.Orders.Include("OrderItems").Include("OrderItems.Product").FirstOrDefaultAsync(o => o.CartId == cartId);
+
                 if (Order != null)
+                {
+                    if (Order.OrderStatus != OrderStatus.ShoppingCart)
+                    {
+                        Response.Cookies.Delete(COOKIE_NAME);
+                        return RedirectToPage("/Index");
+                    }
+
                     Amount = Order.OrderItems.Sum(x => Convert.ToDecimal(x.Quantity) * x.UnitaryValue);
+                }
                 else
+                {
                     Amount = 0;
+                }
             }
-            else SetCartCookie();
+            else
+            {
+                Amount = 0;
+                SetCartCookie();
+            }
 
             return Page();
         }
@@ -54,7 +69,7 @@ namespace HortifrutiWebApp.Pages
                 Path = "/",
                 Expires = DateTime.UtcNow.AddDays(90),
                 IsEssential = true,
-                Secure = false,
+                Secure = true,
                 SameSite = Microsoft.AspNetCore.Http.SameSiteMode.None,
                 HttpOnly = false // Necessário para acessar via ajax
             };
