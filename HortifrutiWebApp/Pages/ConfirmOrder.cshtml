@@ -1,0 +1,97 @@
+﻿@page
+@model HortifrutiWebApp.Pages.ConfirmOrderModel
+@{
+	ViewData["Title"] = "Confirme o seu Pedido";
+}
+
+<div class="card">
+	<div class="card-header bg-danger text-light">
+		<div class="row">
+			<div class="col-8">
+				<h4 class="m-0">
+					@ViewData["Title"]
+				</h4>
+			</div>
+			<div class="col-4 text-right">
+				<a asp-page="/Index" class="btn btn-outline-light btn-sm pull-right">Continuar Comprando</a>
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+		@if ((Model.Order != null) && (Model.Order.OrderItems.Count > 0))
+		{
+			@foreach (var item in Model.Order.OrderItems.OrderBy(oi => oi.Product.Name))
+			{
+				var imageFilePath = System.IO.Path.Combine("/img/product/", item.ProductId.ToString("D6") + ".jpg");
+
+				<div class="row">
+					<div class="col-sm-3 col-md-2 text-center mb-2 mb-sm-0">
+						<img class="img-thumbnail" src="@imageFilePath" />
+					</div>
+					<div class="col-sm-9 col-md-4 col-lg-5 text-left">
+						<h4 class="product-name"><strong>@item.Product.Name</strong></h4>
+						<h4><small>@item.Product.Descrition</small></h4>
+					</div>
+					<div class="col-sm-12 col-md-6 col-lg-5">
+						<div class="row">
+							<div class="col-9 text-md-right pt-2 text-right">
+								<h6>
+									<strong>R$ @item.UnitaryValue.ToString("F2")</strong><span class="text-muted"> x </span>@item.Quantity
+								</h6>
+							</div>
+							<div class="col-3 mr-auto text-right mt-1 text-muted">
+								<b>R$ @item.ItemValue.ToString("F2")</b>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr />
+			}
+			<div class="row text-left">
+				<div class="col-sm-12">
+					<h5 class="mb-3">Dados de Entrega</h5>
+					<p>
+						<b>@Model.Client.Name</b>
+
+						<br />
+						@Model.Order.Address.Street,
+						@Model.Order.Address.Number,
+						@Model.Order.Address.Neighborhood
+
+						<br />
+
+						@Model.Order.Address.City-@Model.Order.Address.State
+
+						<br />
+
+						CEP: @Model.Order.Address.Cep.Insert(5, "-").Insert(2, ".")
+
+						<br />
+
+						Complemento: @Model.Order.Address.Complement
+
+						<br />
+
+						Referência: @(Model.Order.Address.Reference??"Não possui")
+					</p>
+				</div>
+			</div>
+		}
+		else
+		{
+			<h3>Seu carrinho de compras está vazio.</h3>
+		}
+	</div>
+	<div class="card-footer text-right">
+		<div class="pull-right">
+			<div class="pull-right mb-2">
+				Valor Total: <b id="amount">R$ @(Model.Order.Amount.ToString("F2"))</b>
+			</div>
+		</div>
+		<hr />
+		@if (Model.Order?.OrderItems?.Count > 0)
+		{
+			<a type="button" asp-page="/FinalizeOrder" class="btn btn-success pull-right">Finalizar Pedido</a>
+		}
+	</div>
+</div>
