@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HortifrutiWebApp.Data;
 using HortifrutiWebApp.Models.Entities;
+using HortifrutiWebApp.Models.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -35,14 +36,21 @@ namespace HortifrutiWebApp.Pages
 
                 if (Order != null)
                 {
-                    Client = await _context.Clients.FirstOrDefaultAsync(c => c.Email == User.Identity.Name);
-                    Order.ClientId = Client.ClientId;
-                    Order.Address = Client.Address;
-                    Order.Amount = Order.OrderItems.Sum(x => Convert.ToDecimal(x.Quantity) * x.UnitaryValue);
-                    await _context.SaveChangesAsync();
+                    if ((Order.OrderItems != null) && Order.OrderItems.Count > 0)
+                    {
+                        if (Order.OrderStatus == OrderStatus.ShoppingCart)
+                        {
+                            Client = await _context.Clients.FirstOrDefaultAsync(c => c.Email == User.Identity.Name);
+                            Order.ClientId = Client.ClientId;
+                            Order.Address = Client.Address;
+                            Order.Amount = Order.OrderItems.Sum(x => Convert.ToDecimal(x.Quantity) * x.UnitaryValue);
+                            await _context.SaveChangesAsync();
+                            return Page();
+                        }
+                    }
                 }
             }
-            return Page();
+            return RedirectToPage("/ShoppingCart");
         }
     }
 }
