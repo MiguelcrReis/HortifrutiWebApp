@@ -35,14 +35,14 @@
 						<td>@Html.DisplayFor(modelItem => item.Phone)</td>
 						<td class="d-none d-lg-table-cell">@Html.DisplayFor(modelItem => item.Birthday)</td>
 						<td class="text-center">
-							<a class="btn btn-primary btn-sm" asP-page="Edit" asp-route-id="@item.ClientId">
+							<a class="btn btn-primary btn-sm" asP-page="Edit" asp-route-id="@item.ClientId" data-toggle="tooltip" title="Alterar">
 								<svg class="bi" width="24" height="24" fill="currentColor">
 									<use xlink:href="/icons.svg#pencil-square" />
 								</svg>
 							</a>
 							<form class="d-inline-block" asp-page-handler="delete" asp-route-id="@item.ClientId"
 								  method="post">
-								<button class="btn btn-danger btn-sm" onclick="confirmDelete(this);" type="button">
+								<button class="btn btn-danger btn-sm" onclick="confirmDelete(this);" type="button" data-toggle="tooltip" title="Excluir">
 									<svg class="bi" width="24" height="24" fill="currentColor">
 										<use xlink:href="/icons.svg#trash" />
 									</svg>
@@ -51,7 +51,7 @@
 							@if (Model.EmailsAdmin.Contains(item.Email))
 							{
 								<form class="d-inline-block" asp-page-handler="removeadmin" asp-route-id="@item.ClientId" method="post">
-									<button class="btn btn-warning btn-sm" type="submit" title="Remover de administradores">
+									<button class="btn btn-warning btn-sm" type="submit" data-toggle="tooltip" title="Remover administrador">
 										<svg class="bi" width="24" height="24" fill="currentColor">
 											<use xlink:href="/icons.svg#person" />
 										</svg>
@@ -61,7 +61,7 @@
 							else
 							{
 								<form class="d-inline-block" asp-page-handler="addadmin" asp-route-id="@item.ClientId" method="post">
-									<button class="btn btn-success btn-sm" type="submit" title="Adicionar a administradores">
+									<button class="btn btn-success btn-sm" type="submit" data-toggle="tooltip" title="Tornar administrador">
 										<svg class="bi" width="24" height="24" fill="currentColor">
 											<use xlink:href="/icons.svg#shield-lock" />
 										</svg>
