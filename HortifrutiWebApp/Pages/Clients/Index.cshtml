@@ -35,18 +35,26 @@
 						<td>@Html.DisplayFor(modelItem => item.Phone)</td>
 						<td class="d-none d-lg-table-cell">@Html.DisplayFor(modelItem => item.Birthday)</td>
 						<td class="text-center">
-							<a class="btn btn-primary btn-sm" asP-page="Edit" asp-route-id="@item.ClientId"><i class="fi-xnsuxl-edit-solid"></i></a>
+							<a class="btn btn-primary btn-sm" asP-page="Edit" asp-route-id="@item.ClientId">
+								<svg class="bi" width="24" height="24" fill="currentColor">
+									<use xlink:href="/icons.svg#pencil-square" />
+								</svg>
+							</a>
 							<form class="d-inline-block" asp-page-handler="delete" asp-route-id="@item.ClientId"
 								  method="post">
 								<button class="btn btn-danger btn-sm" onclick="confirmDelete(this);" type="button">
-									<i class="fi-xnsuxl-trash-bin"></i>
+									<svg class="bi" width="24" height="24" fill="currentColor">
+										<use xlink:href="/icons.svg#trash" />
+									</svg>
 								</button>
 							</form>
 							@if (Model.EmailsAdmin.Contains(item.Email))
 							{
 								<form class="d-inline-block" asp-page-handler="removeadmin" asp-route-id="@item.ClientId" method="post">
 									<button class="btn btn-warning btn-sm" type="submit" title="Remover de administradores">
-										<i class="fi-xnsuxl-user-solid"></i>
+										<svg class="bi" width="24" height="24" fill="currentColor">
+											<use xlink:href="/icons.svg#person" />
+										</svg>
 									</button>
 								</form>
 							}
@@ -54,7 +62,9 @@
 							{
 								<form class="d-inline-block" asp-page-handler="addadmin" asp-route-id="@item.ClientId" method="post">
 									<button class="btn btn-success btn-sm" type="submit" title="Adicionar a administradores">
-										<i class="fi-xnsuxl-user-shield-solid"></i>
+										<svg class="bi" width="24" height="24" fill="currentColor">
+											<use xlink:href="/icons.svg#shield-lock" />
+										</svg>
 									</button>
 								</form>
 							}

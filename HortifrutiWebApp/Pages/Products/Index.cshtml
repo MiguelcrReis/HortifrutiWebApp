@@ -33,11 +33,17 @@
 						<td>@Html.DisplayFor(modelItem => item.Price)</td>
 						<td class="d-none d-lg-table-cell">@Html.DisplayFor(modelItem => item.Stock)</td>
 						<td class="text-center">
-							<a class="btn btn-primary btn-sm" asP-page="Edit" asp-route-id="@item.ProductId"><i class="fi-xnsuxl-edit-solid"></i></a>
+							<a class="btn btn-primary btn-sm" asP-page="Edit" asp-route-id="@item.ProductId">
+								<svg class="bi" width="24" height="24" fill="currentColor">
+									<use xlink:href="/icons.svg#pencil-square" />
+								</svg>
+							</a>
 							<form class="d-inline-block" asp-page-handler="delete" asp-route-id="@item.ProductId"
 								  method="post">
 								<button class="btn btn-danger btn-sm" onclick="confirmDelete(this);" type="button">
-									<i class="fi-xnsuxl-trash-bin"></i>
+									<svg class="bi" width="24" height="24" fill="currentColor">
+										<use xlink:href="/icons.svg#trash" />
+									</svg>
 								</button>
 							</form>
 						</td>

@@ -63,9 +63,15 @@
 								<input asp-for="Client.Address.Cep" class="form-control col-6 col-lg-4" />
 								<div class="input-group-append">
 									<span class="input-group-text p-1">
-										<i class="fi-xnsrls-loading d-none" id="cep_loading"></i>
-										<i class="fi-xwsuxl-check d-none" id="cep_checked"></i>
-										<i class="fi-xwsuxl-times-wide" id="cep_none"></i>
+										<svg class="bi d-none" width="24" height="24" fill="currentColor" id="cep_loading">
+											<use xlink:href="/icons.svg#hourglass-split" />
+										</svg>
+										<svg class="bi d-none" width="24" height="24" fill="currentColor" id="cep_checked">
+											<use xlink:href="/icons.svg#check" />
+										</svg>
+										<svg class="bi" width="24" height="24" fill="currentColor" id="cep_none">
+											<use xlink:href="/icons.svg#x" />
+										</svg>
 									</span>
 								</div>
 							</div>

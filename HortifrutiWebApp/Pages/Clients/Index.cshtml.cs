@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace HortifrutiWebApp.Pages.Clients
 {
-    [Authorize(Policy = "isAdmin")]
+    //[Authorize(Policy = "isAdmin")]
     public class IndexModel : PageModel
     {
         #region Dependency Injection

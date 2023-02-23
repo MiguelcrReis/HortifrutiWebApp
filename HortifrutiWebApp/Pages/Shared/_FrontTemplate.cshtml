@@ -35,7 +35,9 @@
 						<ul class="navbar-nav">
 							<li class="nav-item">
 								<a class="nav-link" style="color: #F5F5F5; font-size: 16px;" id="shoppingCart" asp-page="/ShoppingCart">
-									<i class="fi-xwsuhl-shopping-cart-wide"></i>
+									<svg class="bi" width="24" height="24" fill="currentColor">
+										<use xlink:href="/icons.svg#cart3" />
+									</svg>
 								</a>
 							</li>
 						</ul>
@@ -62,7 +64,6 @@
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
-	<script defer src="https://friconix.com/cdn/friconix.js"></script>
 
 	@RenderSection("Scripts", required: false)
 </body>
