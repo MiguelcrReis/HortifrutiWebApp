@@ -14,9 +14,9 @@
 <main class="container">
 	@if (Model.Products.Count > 0)
 	{
-		<table class="table">
+		<table class="table table-striped table-light table-sm table-hover">
 			<thead>
-				<tr>
+				<tr class="bg-dark text-white">
 					<th>@Html.DisplayNameFor(model => model.Products[0].Name)</th>
 					<th>@Html.DisplayNameFor(model => model.Products[0].Descrition)</th>
 					<th>@Html.DisplayNameFor(model => model.Products[0].Price)</th>
@@ -33,15 +33,15 @@
 						<td>@Html.DisplayFor(modelItem => item.Price)</td>
 						<td class="d-none d-lg-table-cell">@Html.DisplayFor(modelItem => item.Stock)</td>
 						<td class="text-center">
-							<a class="btn btn-primary btn-sm" asP-page="Edit" asp-route-id="@item.ProductId" data-toggle="tooltip" title="Alterar">
-								<svg class="bi" width="24" height="24" fill="currentColor">
+							<a class="btn btn-primary btn-sm p-1" asP-page="Edit" asp-route-id="@item.ProductId" data-toggle="tooltip" title="Alterar">
+								<svg class="bi" width="20" height="20" fill="currentColor">
 									<use xlink:href="/icons.svg#pencil-square" />
 								</svg>
 							</a>
 							<form class="d-inline-block" asp-page-handler="delete" asp-route-id="@item.ProductId"
 								  method="post">
-								<button class="btn btn-danger btn-sm" onclick="confirmDelete(this);" type="button" data-toggle="tooltip" title="Excluir">
-									<svg class="bi" width="24" height="24" fill="currentColor">
+								<button class="btn btn-danger btn-sm p-1" onclick="confirmDelete(this);" type="button" data-toggle="tooltip" title="Excluir">
+									<svg class="bi" width="20" height="20" fill="currentColor">
 										<use xlink:href="/icons.svg#trash" />
 									</svg>
 								</button>
