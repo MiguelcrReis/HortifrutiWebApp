@@ -80,8 +80,8 @@ namespace HortifrutiWebApp
             #region Add Razor Pages
             services.AddRazorPages(options =>
             {
-                options.Conventions.AuthorizePage("/Admin", "isAdmin");
-                options.Conventions.AuthorizeFolder("/Products", "isAdmin");
+                options.Conventions.AuthorizePage("/Admin/Admin", "isAdmin");
+                options.Conventions.AuthorizeFolder("/Admin/Products", "isAdmin");
             }).AddCookieTempDataProvider(options =>
             {
                 options.Cookie.IsEssential = true;
