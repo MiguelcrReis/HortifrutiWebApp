@@ -38,7 +38,7 @@ namespace HortifrutiWebApp.API
                         if (_context.SaveChanges() > 0)
                         {
                             decimal amount = order.OrderItems.Sum(oi => oi.ItemValue);
-                            var item = order.OrderItems.Select(x => new { id = x.OrderId, q = x.Quantity, v = x.ItemValue })
+                            var item = order.OrderItems.Select(x => new { id = x.ProductId, q = x.Quantity, v = x.ItemValue })
                                 .FirstOrDefault(oi => oi.id == productId);
                             var jsonResult = new JsonResult(new { v = amount, item });
 
