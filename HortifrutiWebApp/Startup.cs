@@ -101,6 +101,7 @@ namespace HortifrutiWebApp
             #region Configure Email
             services.Configure<EmailConfiguration>(Configuration.GetSection("EmailConfiguration"));
             services.AddSingleton<IEmailSender, EmailSender>();
+            //services.AddSingleton<IEmailSender, SendGridSender>();
             #endregion
         }
         #endregion
