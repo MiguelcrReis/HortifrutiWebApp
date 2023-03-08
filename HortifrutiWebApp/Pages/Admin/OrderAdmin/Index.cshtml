@@ -32,7 +32,7 @@
 						<td>@item.Client?.Name</td>
 						<td>@item.Amount.ToString("C")</td>
 						<td>@item.DateTimeOrder.ToString()</td>
-						<td>@item.OrderStatus.ToString()</td>
+						<td>@HortifrutiWebApp.Models.Enums.EnumExtensions.GetDisplayAttributeFrom(item.OrderStatus, typeof(HortifrutiWebApp.Models.Enums.OrderStatus))</td>
 						<td class="text-center">
 							<a class="btn btn-warning btn-sm p-1" asp-page="./OrderDetails"
 							   asp-route-id="@item.OrderId" title="Itens do Pedido" data-toggle="tooltip">
@@ -54,7 +54,7 @@
 									</svg>
 								</button>
 							</form>
-							<form class="d-inline-block" asp-page-handler="DeleteOrder" asp-route-id="@item.OrderId" method="post" 
+							<form class="d-inline-block" asp-page-handler="DeleteOrder" asp-route-id="@item.OrderId" method="post"
 								  title="Excluir Pedido" data-toggle="tooltip">
 								<button class="btn btn-danger btn-sm p-1" onclick="confirmDelete(this);" type="button">
 									<svg class="bi" width="20" height="20" fill="currentColor">
