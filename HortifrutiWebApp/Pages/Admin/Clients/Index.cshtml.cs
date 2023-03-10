@@ -27,7 +27,7 @@ namespace HortifrutiWebApp.Pages.Clients
         }
         #endregion
 
-        #region Variables
+        #region Parameters
         public IList<Client> Clients { get; set; }
         public IList<string> EmailsAdmin { get; set; }
         #endregion
@@ -58,7 +58,6 @@ namespace HortifrutiWebApp.Pages.Clients
                     if (user != null) await _userManager.DeleteAsync(user);
                 }
             }
-
             return RedirectToPage("./Index");
         }
         #endregion
@@ -76,7 +75,6 @@ namespace HortifrutiWebApp.Pages.Clients
 
                 if (user != null) await _userManager.RemoveFromRoleAsync(user, "admin");
             }
-
             return RedirectToPage("./Index");
         }
         #endregion
@@ -99,7 +97,6 @@ namespace HortifrutiWebApp.Pages.Clients
                     await _userManager.AddToRoleAsync(user, "admin");
                 }
             }
-
             return RedirectToPage("./Index");
         }
         #endregion

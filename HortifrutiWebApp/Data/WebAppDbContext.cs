@@ -6,11 +6,14 @@ namespace HortifrutiWebApp.Data
 {
     public class WebAppDbContext : IdentityDbContext<AppUser>
     {
+        #region Constructor
         public WebAppDbContext(DbContextOptions<WebAppDbContext> options)
             : base(options)
         {
         }
+        #endregion
 
+        #region Model Creating
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -44,12 +47,15 @@ namespace HortifrutiWebApp.Data
                 .HasForeignKey(o => o.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
+        #endregion
 
+        #region DbSet
         public DbSet<Product> Products { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<Visit> Visits { get; set; }
+        #endregion
     }
 }

@@ -18,11 +18,11 @@ namespace HortifrutiWebApp.Models.Entities
 
         [Required(ErrorMessage = "\"{0}\" é obrigatório!")]
         [Column(TypeName = "decimal(18,2)")]
-        [Display(Name = "Valor Unitário")]
+        [Display(Name = "Preço Unitário")]
         public decimal UnitaryValue { get; set; }
 
         [NotMapped]
-        [Display(Name = "Valor do Item")]
+        [Display(Name = "Preço do Item")]
         public decimal ItemValue
         {
             get

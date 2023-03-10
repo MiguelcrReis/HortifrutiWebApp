@@ -13,22 +13,24 @@ namespace HortifrutiWebApp.Pages
 {
     public class IndexModel : PageModel
     {
-        private const int PageSize = 12;
+        #region Dependency Injection
         private readonly ILogger<IndexModel> _logger;
-
         private readonly WebAppDbContext _context;
-
-        public int CurrentPage { get; set; }
-        public int QuantityPages { get; set; }
-
-        public IList<Product> Products;
-
         public IndexModel(ILogger<IndexModel> logger, WebAppDbContext context)
         {
             _logger = logger;
             _context = context;
         }
+        #endregion
 
+        #region Parameters
+        private const int PageSize = 12;
+        public int CurrentPage { get; set; }
+        public int QuantityPages { get; set; }
+        public IList<Product> Products;
+        #endregion
+
+        #region OnGet Async
         public async Task OnGetAsync([FromQuery(Name = "q")] string search, [FromQuery(Name = "s")] int? sequence = 1,
             [FromQuery(Name = "p")] int? page = 1)
         {
@@ -69,5 +71,6 @@ namespace HortifrutiWebApp.Pages
             query = query.Skip(PageSize * (this.CurrentPage - 1)).Take(PageSize);
             Products = await query.ToListAsync();
         }
+        #endregion
     }
 }

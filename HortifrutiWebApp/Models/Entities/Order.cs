@@ -23,7 +23,7 @@ namespace HortifrutiWebApp.Models.Entities
         public decimal Amount { get; set; }
 
         [Required(ErrorMessage = "\"{0}\" é obrigatório!")]
-        [DisplayName("Order status")]
+        [DisplayName("Status")]
         public OrderStatus OrderStatus { get; set; }
 
         public int? ClientId { get; set; }

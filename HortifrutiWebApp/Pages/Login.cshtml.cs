@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using HortifrutiWebApp.Models.Entities;
 using Microsoft.AspNetCore.Authentication;
@@ -11,30 +10,15 @@ namespace HortifrutiWebApp.Pages
 {
     public class LoginModel : PageModel
     {
-        public class LoginData
-        {
-            [Required(ErrorMessage = "\"{0}\" obrigatório.")]
-            [EmailAddress]
-            [Display(Name = "E-mail")]
-            [DataType(DataType.EmailAddress)]
-            public string Email { get; set; }
-
-            [Required(ErrorMessage = "\"{0}\" obrigatório.")]
-            [DataType(DataType.Password)]
-            [Display(Name = "Senha")]
-            public string Password { get; set; }
-
-            [Display(Name = "Lembrar de mim")]
-            public bool Remember { get; set; }
-        }
-
+        #region Dependency Injection
         private readonly SignInManager<AppUser> _singInManager;
-
         public LoginModel(SignInManager<AppUser> signInManager)
         {
             _singInManager = signInManager;
         }
+        #endregion
 
+        #region Parameters
         [BindProperty]
         public LoginData Data { get; set; }
 
@@ -43,7 +27,9 @@ namespace HortifrutiWebApp.Pages
 
         [TempData]
         public string ErrorMesage { get; set; }
+        #endregion
 
+        #region OnGet Async
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMesage))
@@ -58,7 +44,9 @@ namespace HortifrutiWebApp.Pages
 
             this.ReturnUrl = returnUrl;
         }
+        #endregion
 
+        #region OnPost Async
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
@@ -79,7 +67,9 @@ namespace HortifrutiWebApp.Pages
             }
             return Page();
         }
+        #endregion
 
+        #region OnPost Logout Async
         public async Task<ActionResult> OnPostLogoutAsync(string returnUrl = null)
         {
             await _singInManager.SignOutAsync();
@@ -93,5 +83,6 @@ namespace HortifrutiWebApp.Pages
                 return RedirectToPage();
             }
         }
+        #endregion
     }
 }

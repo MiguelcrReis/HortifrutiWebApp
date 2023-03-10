@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HortifrutiWebApp.Data;
@@ -15,16 +14,21 @@ namespace HortifrutiWebApp.Pages
     [Authorize(Roles = "client")]
     public class ConfirmOrderModel : PageModel
     {
+        #region Dependency Injection
         private readonly WebAppDbContext _context;
-        public Order Order { get; set; }
-        public Client Client { get; set; }
-        public string COOKIE_NAME { get { return ".AspNetCore.CartId"; } }
-
         public ConfirmOrderModel(WebAppDbContext context)
         {
             _context = context;
         }
+        #endregion
 
+        #region Parameters
+        public Order Order { get; set; }
+        public Client Client { get; set; }
+        public string COOKIE_NAME { get { return ".AspNetCore.CartId"; } }
+        #endregion
+
+        #region OnGet Async
         public async Task<IActionResult> OnGetAsync()
         {
             if (Request.Cookies.ContainsKey(COOKIE_NAME))
@@ -52,5 +56,6 @@ namespace HortifrutiWebApp.Pages
             }
             return RedirectToPage("/ShoppingCart");
         }
+        #endregion
     }
 }

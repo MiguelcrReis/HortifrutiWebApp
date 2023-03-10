@@ -42,6 +42,7 @@ namespace HortifrutiWebApp.Models.Entities
         [Display(Name = "Contato Telêfonico")]
         public string Phone { get; set; }
 
+        [Display(Name = "Status")]
         public ClientStatus ClientStatus { get; set; }
 
         public Address Address { get; set; }

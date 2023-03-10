@@ -10,12 +10,13 @@ namespace HortifrutiWebApp.API
     [ApiController]
     public class ShoppingCartAPI : ControllerBase
     {
+        #region Dependency Injection
         private readonly WebAppDbContext _context;
-
         public ShoppingCartAPI(WebAppDbContext context)
         {
             _context = context;
         }
+        #endregion
 
         #region Update Cart Item
         [HttpPost]

@@ -11,13 +11,15 @@ namespace HortifrutiWebApp.API
     [ApiController]
     public class OrderAPIController : ControllerBase
     {
+        #region Dependency Injection
         private readonly WebAppDbContext _context;
-
         public OrderAPIController(WebAppDbContext context)
         {
             _context = context;
         }
+        #endregion
 
+        #region Update Order Item
         [HttpPost]
         public async Task<JsonResult> UpdateOrderItem([FromForm] int? orderId, [FromForm] int? productId = 0, [FromForm] int? quantity = 0)
         {
@@ -49,7 +51,9 @@ namespace HortifrutiWebApp.API
             }
             return new JsonResult(false);
         }
+        #endregion
 
+        #region Delete Order Item
         [HttpPost]
         public async Task<JsonResult> DeleteOrderItem([FromForm] int? orderId, [FromForm] int? productId = 0)
         {
@@ -79,5 +83,6 @@ namespace HortifrutiWebApp.API
             }
             return new JsonResult(false);
         }
+        #endregion
     }
 }

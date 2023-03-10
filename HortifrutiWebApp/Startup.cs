@@ -1,4 +1,5 @@
-﻿using HortifrutiWebApp.Data;
+﻿using HortifrutiWebApp.Contracts;
+using HortifrutiWebApp.Data;
 using HortifrutiWebApp.Entities;
 using HortifrutiWebApp.Models.Entities;
 using HortifrutiWebApp.Services;

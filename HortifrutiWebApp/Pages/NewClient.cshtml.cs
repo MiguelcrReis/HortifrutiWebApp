@@ -1,11 +1,10 @@
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using HortifrutiWebApp.Contracts;
 using HortifrutiWebApp.Data;
 using HortifrutiWebApp.Models.Entities;
 using HortifrutiWebApp.Models.Enums;
-using HortifrutiWebApp.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,6 +14,7 @@ namespace HortifrutiWebApp.Pages
 {
     public class NewClientModel : PageModel
     {
+        #region Dependency Injection
         private WebAppDbContext _context;
         // Gerenciamento de users
         private UserManager<AppUser> _userManager;
@@ -29,35 +29,24 @@ namespace HortifrutiWebApp.Pages
             _roleManager = roleManager;
             _emailSender = emailSender;
         }
-
-        #region Passwords
-        public class Passwords
-        {
-            [Required(ErrorMessage = "\"{0}\" obrigatório.")]
-            [StringLength(16, MinimumLength = 6, ErrorMessage = "A \"{0}\" deve conter pelo menos \"{2}\" e no máximo  \"{1}\" caracteres.")]
-            [DataType(DataType.Password)]
-            [Display(Name = "Senha")]
-            public string Password { get; set; }
-
-            [Required(ErrorMessage = "\"{0}\" obrigatório.")]
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirmarção de Senha")]
-            [Compare("Password", ErrorMessage = "A confirmação de senha deve ser igual a senha.")]
-            public string ConfirmationPassword { get; set; }
-        }
         #endregion
 
+        #region Parameters
         [BindProperty]
         public Client Client { get; set; }
 
         [BindProperty]
         public Passwords UserPasswords { get; set; }
+        #endregion
 
+        #region OnGet
         public IActionResult OnGet()
         {
             return Page();
         }
+        #endregion
 
+        #region OnPost Async
         public async Task<IActionResult> OnPostAsync()
         {
             // Instancia um novo objeto Client and Address
@@ -137,5 +126,6 @@ namespace HortifrutiWebApp.Pages
             }
             return Page();
         }
+        #endregion
     }
 }

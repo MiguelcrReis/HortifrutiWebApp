@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using HortifrutiWebApp.Data;
 using HortifrutiWebApp.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
 
@@ -16,16 +13,20 @@ namespace HortifrutiWebApp.Pages.Clients
     [Authorize(Policy = "isAdmin")]
     public class EditModel : PageModel
     {
+        #region Dependency Injection
         private readonly HortifrutiWebApp.Data.WebAppDbContext _context;
-
         public EditModel(HortifrutiWebApp.Data.WebAppDbContext context)
         {
             _context = context;
         }
+        #endregion
 
+        #region Parameters
         [BindProperty]
         public Client Client { get; set; }
+        #endregion
 
+        #region OnGet Async
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -41,11 +42,12 @@ namespace HortifrutiWebApp.Pages.Clients
             }
             return Page();
         }
+        #endregion
 
-
+        #region OnPost Async
         public async Task<IActionResult> OnPostAsync()
         {
-            // Garante a não alteração dos campos de e-mail e cpf.
+            // Protect Email and CPF
             var client = await _context.Clients.Select(x => new { x.ClientId, x.Email, x.Cpf }).FirstOrDefaultAsync();
             Client.Email = client.Email;
             Client.Cpf = client.Cpf;
@@ -76,21 +78,19 @@ namespace HortifrutiWebApp.Pages.Clients
             catch (DbUpdateConcurrencyException)
             {
                 if (!ClientExists(Client.ClientId))
-                {
                     return NotFound();
-                }
                 else
-                {
                     throw;
-                }
             }
-
             return RedirectToPage("./Index");
         }
+        #endregion
 
+        #region Function - Client Exists
         private bool ClientExists(int id)
         {
             return _context.Clients.Any(e => e.ClientId == id);
         }
+        #endregion
     }
 }

@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using HortifrutiWebApp.Contracts;
 using HortifrutiWebApp.Data;
 using HortifrutiWebApp.Models.Entities;
-using HortifrutiWebApp.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -17,32 +14,29 @@ namespace HortifrutiWebApp.Pages
 {
     public class RecoverPasswordModel : PageModel
     {
+        #region Dependency Injection
         private UserManager<AppUser> _userManager;
         private readonly IEmailSender _emailSender;
-
-        public class EmailData
-        {
-            [Required(ErrorMessage = "\"{0}\" obrigatório")]
-            [EmailAddress]
-            [Display(Name = "E-mail")]
-            [DataType(DataType.EmailAddress)]
-            public string Email { get; set; }
-        }
-
-        [BindProperty]
-        public EmailData Data { get; set; }
-
         public RecoverPasswordModel(WebAppDbContext context, UserManager<AppUser> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;
         }
+        #endregion
 
+        #region Parameters
+        [BindProperty]
+        public EmailData Data { get; set; }
+        #endregion
+
+        #region OnGet
         public IActionResult OnGet()
         {
             return Page();
         }
+        #endregion
 
+        #region OnPost Async
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
@@ -63,11 +57,10 @@ namespace HortifrutiWebApp.Pages
                     return RedirectToPage("/RecoveryEmailSent");
                 }
                 else
-                {
                     return RedirectToPage("/RecoveryEmailSent");
-                }
             }
             return Page();
         }
+        #endregion
     }
 }

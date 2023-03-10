@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace HortifrutiWebApp.Pages.Admin.OrderAdmin
+namespace HortifrutiWebApp.Pages.Admin.Orders
 {
     public class IndexModel : PageModel
     {

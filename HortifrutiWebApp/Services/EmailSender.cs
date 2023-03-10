@@ -1,4 +1,5 @@
-﻿using HortifrutiWebApp.Entities;
+﻿using HortifrutiWebApp.Contracts;
+using HortifrutiWebApp.Entities;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
@@ -7,20 +8,17 @@ using System.Threading.Tasks;
 
 namespace HortifrutiWebApp.Services
 {
-    public interface IEmailSender
-    {
-        Task SendEmailAsync(string email, string subject, string textMessage, string htmlMessage);
-    }
-
     public class EmailSender : IEmailSender
     {
+        #region Dependency Injection
         private readonly EmailConfiguration _emailConfiguration;
         public EmailSender(IOptions<EmailConfiguration> emailConfiguration)
         {
             _emailConfiguration = emailConfiguration.Value;
         }
+        #endregion
 
-
+        #region Send Email Async
         public async Task SendEmailAsync(string email, string subject, string textMessage, string htmlMessage)
         {
             var message = new MimeMessage();
@@ -43,5 +41,6 @@ namespace HortifrutiWebApp.Services
             }
             catch (Exception ex) { throw new InvalidOperationException(ex.Message); }
         }
+        #endregion
     }
 }

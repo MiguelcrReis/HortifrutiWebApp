@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HortifrutiWebApp.Models.Entities;
@@ -14,16 +12,17 @@ namespace HortifrutiWebApp.Pages
 {
     public class RedefinePasswordModel : PageModel
     {
+        #region Dependency Injection
         private readonly UserManager<AppUser> _userManager;
-
         public RedefinePasswordModel(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
         }
+        #endregion
 
+        #region Parameters
         [BindProperty]
         public PasswordResetData Data { get; set; }
-
         public class PasswordResetData
         {
             [Required(ErrorMessage = "\"{0}\" é obrigatório!")]
@@ -46,7 +45,9 @@ namespace HortifrutiWebApp.Pages
             public string Token { get; set; }
 
         }
+        #endregion
 
+        #region OnGet
         public IActionResult OnGet(string token = null)
         {
             if (token == null)
@@ -59,28 +60,24 @@ namespace HortifrutiWebApp.Pages
                 return Page();
             }
         }
+        #endregion
 
+        #region OnPost Async
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
-            {
                 return Page();
-            }
 
             var user = await _userManager.FindByEmailAsync(Data.Email);
 
             if (user == null)
-            {
                 // Não revela que o usuário que não existe, ou que o e-mail está incorreto
                 return RedirectToPage("./ConfirmationRedefinePassword");
-            }
 
             var result = await _userManager.ResetPasswordAsync(user, Data.Token, Data.Password);
 
             if (result.Succeeded)
-            {
                 return RedirectToPage("./ConfirmationRedefinePassword");
-            }
 
             foreach (var error in result.Errors)
             {
@@ -89,5 +86,6 @@ namespace HortifrutiWebApp.Pages
 
             return Page();
         }
+        #endregion
     }
 }

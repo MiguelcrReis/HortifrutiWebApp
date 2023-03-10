@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using HortifrutiWebApp.Data;
 using HortifrutiWebApp.Models.Entities;
 using HortifrutiWebApp.Models.Enums;
@@ -15,15 +12,18 @@ namespace HortifrutiWebApp.Pages.Clients
     [Authorize(Policy = "isAdmin")]
     public class CreateModel : PageModel
     {
+        #region Dependency Injection
         private readonly WebAppDbContext _context;
-
         public CreateModel(WebAppDbContext context)
         {
             _context = context;
         }
+        #endregion
 
+        #region Parameters
         [BindProperty]
         public Client Client { get; set; }
+        #endregion
 
         #region OnGet
         public IActionResult OnGet()
@@ -32,7 +32,7 @@ namespace HortifrutiWebApp.Pages.Clients
         }
         #endregion
 
-        #region OnPostAsync
+        #region OnPost Async
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

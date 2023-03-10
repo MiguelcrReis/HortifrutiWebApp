@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HortifrutiWebApp.Contracts;
 using HortifrutiWebApp.Data;
 using HortifrutiWebApp.Models.Entities;
 using HortifrutiWebApp.Models.Enums;
-using HortifrutiWebApp.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -17,17 +15,23 @@ namespace HortifrutiWebApp.Pages
     [Authorize(Roles = "client")]
     public class FinalizeOrderModel : PageModel
     {
+        #region Dependency Injection
         private readonly WebAppDbContext _context;
-        private IEmailSender _emailSender;
-        public string COOKIE_NAME { get { return ".AspNetCore.CartId"; } }
-        public Order Order { get; set; }
-        public Client Client { get; set; }
-
+        private readonly IEmailSender _emailSender;
         public FinalizeOrderModel(WebAppDbContext context, IEmailSender emailSender)
         {
             _context = context;
             _emailSender = emailSender;
         }
+        #endregion
+
+        #region Parameters
+        public string COOKIE_NAME { get { return ".AspNetCore.CartId"; } }
+        public Order Order { get; set; }
+        public Client Client { get; set; }
+        #endregion
+
+        #region OnGet Async
         public async Task<IActionResult> OnGetAsync()
         {
             if (Request.Cookies.ContainsKey(COOKIE_NAME))
@@ -60,7 +64,9 @@ namespace HortifrutiWebApp.Pages
             }
             return RedirectToPage("/ShoppingCart");
         }
+        #endregion
 
+        #region Send Order Summary Email
         private async Task SendOrderSummaryEmail()
         {
             StringBuilder sb = new StringBuilder();
@@ -93,5 +99,6 @@ namespace HortifrutiWebApp.Pages
                 ModelState.AddModelError("", $"Erro ao enviar e-mail: {e.Message}");
             }
         }
+        #endregion
     }
 }

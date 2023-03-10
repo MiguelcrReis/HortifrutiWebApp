@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HortifrutiWebApp.Models.Entities;
@@ -13,16 +11,20 @@ namespace HortifrutiWebApp.Pages
 {
     public class ConfirmationEmailModel : PageModel
     {
+        #region Dependency Injection
         private readonly UserManager<AppUser> _userManager;
-
         public ConfirmationEmailModel(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
         }
+        #endregion
 
+        #region Parameters
         public string StatusMessage { get; set; }
         public bool ConfirmationEmail { get; set; }
+        #endregion
 
+        #region OnGet Async
         public async Task<IActionResult> OnGetAsync(string userId, string token)
         {
             if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token)) RedirectToPage("/Index");
@@ -39,5 +41,6 @@ namespace HortifrutiWebApp.Pages
 
             return Page();
         }
+        #endregion
     }
 }

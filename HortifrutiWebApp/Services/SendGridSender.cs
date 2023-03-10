@@ -1,8 +1,7 @@
-﻿using SendGrid;
+﻿using System;
+using HortifrutiWebApp.Contracts;
+using SendGrid;
 using SendGrid.Helpers.Mail;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace HortifrutiWebApp.Services
