@@ -12,21 +12,27 @@ namespace HortifrutiWebApp.Pages.Admin.Orders
 {
     public class IndexModel : PageModel
     {
+        #region Dependency Injection
         private readonly WebAppDbContext _context;
-
         public IndexModel(WebAppDbContext context)
         {
             _context = context;
         }
+        #endregion
 
+        #region Parameters
         public IList<Order> Orders { get; set; }
+        #endregion
 
+        #region OnGet Async
         public async Task OnGetAsync()
         {
             Orders = await _context.Orders.Include("Client")
                 .OrderByDescending(o => o.DateTimeOrder).ToListAsync();
         }
+        #endregion
 
+        #region OnPost Cancel Order Async
         public async Task<IActionResult> OnPostCancelOrderAsync(int? id)
         {
             if (!id.HasValue) return NotFound();
@@ -40,8 +46,10 @@ namespace HortifrutiWebApp.Pages.Admin.Orders
             }
             return RedirectToPage("./Index");
         }
+        #endregion
 
-        public async Task<IActionResult> OnPostDeleteOrderAsync(int? id)
+        #region OnPost Cancel Order Async
+        public async Task<IActionResult> OnPostCancelOrderAsync(int? id)
         {
             if (!id.HasValue) return NotFound();
 
@@ -54,5 +62,6 @@ namespace HortifrutiWebApp.Pages.Admin.Orders
             }
             return RedirectToPage("./Index");
         }
+        #endregion
     }
 }
