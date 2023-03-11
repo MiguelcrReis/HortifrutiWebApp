@@ -4,21 +4,22 @@
 <script>
 	function confirmCancellation(el) {
 		$.confirm({
-			title: 'Confirmação',
-			content: 'Deseja realmente cancelar este pedido?',
+			title: 'Confirmação de Cancelamento!',
+			content: 'Tem certeza que deseja cancelar?',
 			buttons: {
-				cancel: {
-					text: "Não",
-					btnClass: "btn-primary",
-					action: function () {
-						$.alert('Cancelamento não realizado.');
-					}
-				},
 				confirm: {
 					text: "Sim",
 					btnClass: "btn-danger",
 					action: function () {
 						el.form.submit();
+						$.alert('Cancelado com Sucesso!');
+					}
+				},
+				cancel: {
+					text: "Não",
+					btnClass: "btn-primary",
+					action: function () {
+						$.alert('Cancelamento não realizado!');
 					}
 				}
 			}
@@ -27,22 +28,22 @@
 
 	function confirmDelete(el) {
 		$.confirm({
-			title: 'Confirmar!',
-			content: 'Tem certeza que deseja deletar?',
+			title: 'Confirmação de Exclusão!',
+			content: 'Tem certeza que deseja excluir?',
 			buttons: {
 				confirm: {
 					text: "Sim",
 					btnClass: "btn-danger",
 					action: function () {
 						el.form.submit();
-						$.alert('Confirmado!');
+						$.alert('Excluido com Sucesso!');
 					}
 				},
 				cancel: {
-					text: "Cancelar",
+					text: "Não",
 					btnClass: "btn-primary",
 					action: function () {
-						$.alert('Cancelado!');
+						$.alert('Exclusão não realizada!');
 					}
 				}
 			}
