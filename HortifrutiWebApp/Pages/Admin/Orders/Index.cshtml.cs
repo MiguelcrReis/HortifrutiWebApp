@@ -48,8 +48,8 @@ namespace HortifrutiWebApp.Pages.Admin.Orders
         }
         #endregion
 
-        #region OnPost Cancel Order Async
-        public async Task<IActionResult> OnPostCancelOrderAsync(int? id)
+        #region OnPostDeleteOrderAsync
+        public async Task<IActionResult> OnPostDeleteOrderAsync(int? id)
         {
             if (!id.HasValue) return NotFound();
 
