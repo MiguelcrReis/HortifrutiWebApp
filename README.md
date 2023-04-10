@@ -8,6 +8,13 @@
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 </p>
 
+## Em aberto
+
+<p align="center">
+A aplicação apresenta problemas com relação ao uso de Cookies no carrinho de compras. Mesmo após finalizar o pedido, o Cookie que armazena o id e as informações do carrinho não está sendo deletado com sucesso, resultando em problemas ao abrir o carrinho em futuras compras. 
+Provavelmente este problema esteja sendo influenciando por conta da versão não tão recente do .NET Core.
+</p>
+
 
 ## Descrição do projeto 
 
@@ -42,4 +49,48 @@ Utilizando também os pacotes SendGrid (versão 9.28.1), Image Sharp (versão 2.
 </p>
 
 ![Hortifruti Reis __ Home page - Google Chrome 2023-03-23 21-35-58](https://user-images.githubusercontent.com/69518446/227396117-ef7ea258-caaa-475e-b68d-6c16517e3c87.gif)
+
+## 📁 Acesso ao Projeto
+[Source code](https://github.com/MiguelcrReis/HortifrutiWebApp)
+
+[Download ZIP](https://github.com/MiguelcrReis/HortifrutiWebApp/archive/refs/heads/master.zip)
+
+
+## 🛠️ Abra e execute o projeto
+
+Deve possuir instaldo [ .NET Core 3.1 SDK ](https://dotnet.microsoft.com/en-us/download/dotnet/3.1)
+
+Deve possuir instaldo [ Servidor MySQL 8.0 ](https://dev.mysql.com/downloads/windows/installer/8.0.html)
+
+Configure a string de conexão com o banco de dados no arquivo appsettings.json, alterando `username`, `password`, e `database` por seus próprios parâmetros:
+
+```cs
+"ConnectionStrings": {
+  "DefaultConnection":"server=localhost;userid=myusername;password=mypassword;database=mydatabase;"
+},
+```
+
+Também no arquivo appsettings.json, configure a conexão com o seu servidor de E-mail, alterando com seus dados:
+
+```cs
+  "EmailConfiguration": {
+    "SenderName": "HortiFruti Reis",
+    "SenderEmail": "HortiFrutiReis@gmail.com",
+    "Password": "hortifrutireis",
+    "ServerAddressEmail": "smtp.gmail.com",
+    "ServerPortEmail": 587,
+    "UserSSL": true
+  }
+```
+
+Execute a instalação e a migração do provedor Mysql usando o Visual Studio Package Manager Console (Tools -> NuGet Package Manager -> Package Manager Console):
+
+```
+Install-Package Pomelo.EntityFrameworkCore.MySql -Version 2.1.1
+```
+```
+Update-Database
+```
+
+Depure a Solução.
 
