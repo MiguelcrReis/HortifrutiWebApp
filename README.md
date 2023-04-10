@@ -10,7 +10,7 @@
 
 ## Em aberto
 
-<p align="center">
+<p align="justify">
 A aplicação apresenta problemas com relação ao uso de Cookies no carrinho de compras. Mesmo após finalizar o pedido, o Cookie que armazena o id e as informações do carrinho não está sendo deletado com sucesso, resultando em problemas ao abrir o carrinho em futuras compras. 
 Provavelmente este problema esteja sendo influenciando por conta da versão não tão recente do .NET Core.
 </p>
