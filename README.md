@@ -86,7 +86,7 @@ Também no arquivo appsettings.json, configure a conexão com o seu servidor de 
 Execute a instalação e a migração do provedor Mysql usando o Visual Studio Package Manager Console (Tools -> NuGet Package Manager -> Package Manager Console):
 
 ```
-Install-Package Pomelo.EntityFrameworkCore.MySql -Version 2.1.1
+Install-Package Pomelo.EntityFrameworkCore.MySql -Version 3.1
 ```
 ```
 Update-Database
