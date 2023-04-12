@@ -3,19 +3,30 @@
 
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
 
 @{ var appUser = await UserManager.GetUserAsync(User);}
 
 <ul class="navbar-nav">
 	@if (SignInManager.IsSignedIn(User))
 	{
+		@if (await RoleManager.RoleExistsAsync("admin"))
+		{
+			@if (UserManager.GetRolesAsync(appUser).Result.Contains("admin"))
+			{
+				<li class="nav-item align-self-center">
+					<a class="nav-link active" asp-area="" asp-page="/Admin/Admin">Administração</a>
+				</li>
+			}
+		}
+
 		<li class="nav-item">
 			<a id="manage" class="nav-link active" asp-area="" asp-page="/Index" title="Manage">Olá, @appUser.Name.Substring(0, appUser.Name.IndexOf(' '))!</a>
 		</li>
 		<li class="nav-item">
 			<form id="logoutForm" class="form-inline" asp-area="" asp-page="/Login" asp-page-handler="logout"
 				  asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-				<button id="logout" type="submit" class="nav-link btn btn-link text-dark">Sair</button>
+				<button id="logout" type="submit" class="nav-link btn btn-link">Sair</button>
 			</form>
 		</li>
 	}
