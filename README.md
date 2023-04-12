@@ -83,6 +83,9 @@ Também no arquivo appsettings.json, configure a conexão com o seu servidor de 
   }
 ```
 
+O arquivo load_tb_products.sql contém o script de inserção de produtos de exmplo. Já contém também na pasta wwwroot/img/product, as fotos desses respectivos produtos do script.
+
+
 Execute a instalação e a migração do provedor Mysql usando o Visual Studio Package Manager Console (Tools -> NuGet Package Manager -> Package Manager Console):
 
 ```
