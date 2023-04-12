@@ -33,9 +33,7 @@ namespace HortifrutiWebApp.Pages
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMesage))
-            {
                 ModelState.AddModelError(string.Empty, ErrorMesage);
-            }
 
             returnUrl ??= Url.Content("~/");
 
@@ -75,13 +73,9 @@ namespace HortifrutiWebApp.Pages
             await _singInManager.SignOutAsync();
 
             if (returnUrl != null)
-            {
                 return LocalRedirect(returnUrl);
-            }
             else
-            {
                 return RedirectToPage();
-            }
         }
         #endregion
     }
