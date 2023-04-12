@@ -12,11 +12,11 @@ using HortifrutiWebApp.Models.Enums;
 namespace HortifrutiWebApp.Pages.Admin.Orders
 {
     [Authorize(Policy = "isAdmin")]
-    public class OrderDetailsModel : PageModel
+    public class DetailsModel : PageModel
     {
         #region Dependency Injection
         private readonly WebAppDbContext _context;
-        public OrderDetailsModel(WebAppDbContext context)
+        public DetailsModel(WebAppDbContext context)
         {
             _context = context;
         }

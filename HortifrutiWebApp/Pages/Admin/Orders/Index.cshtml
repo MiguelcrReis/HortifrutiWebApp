@@ -34,13 +34,13 @@
 						<td>@item.DateTimeOrder.ToString()</td>
 						<td>@HortifrutiWebApp.Models.Enums.EnumExtensions.GetDisplayAttributeFrom(item.OrderStatus, typeof(HortifrutiWebApp.Models.Enums.OrderStatus))</td>
 						<td class="text-center">
-							<a class="btn btn-warning btn-sm p-1" asp-page="./OrderDetails"
+							<a class="btn btn-warning btn-sm p-1" asp-page="./Details"
 							   asp-route-id="@item.OrderId" title="Itens do Pedido" data-toggle="tooltip">
 								<svg class="bi" width="20" height="20" fill="currentColor">
 									<use xlink:href="/icons.svg#list-check" />
 								</svg>
 							</a>
-							<a class="btn btn-primary btn-sm p-1" asp-page="./OrderEdit"
+							<a class="btn btn-primary btn-sm p-1" asp-page="./Edit"
 							   asp-route-id="@item.OrderId" title="Alterar Pedido" data-toggle="tooltip">
 								<svg class="bi" width="20" height="20" fill="currentColor">
 									<use xlink:href="/icons.svg#pencil-square" />

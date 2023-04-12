@@ -8,11 +8,11 @@ using HortifrutiWebApp.Data;
 
 namespace HortifrutiWebApp.Pages.Admin.Orders
 {
-    public class OrderEditModel : PageModel
+    public class EditModel : PageModel
     {
         #region Dependency Injection
         private readonly WebAppDbContext _context;
-        public OrderEditModel(WebAppDbContext context)
+        public EditModel(WebAppDbContext context)
         {
             _context = context;
         }
